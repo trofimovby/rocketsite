@@ -3,107 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rocket Sites — Сайты для бизнеса от 350 BYN | Беларусь</title>
-    <meta name="description" content="Готовый лендинг за 200 BYN, интернет-магазин за 500 BYN. Срок 48 часов. Без правок, без созвонов — только результат.">
+    <title>Rocket Sites — Сайты за 48 часов</title>
+    <meta name="description" content="Разработка лендингов и магазинов за 2 дня. От 350 BYN.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://site48.by/">
+    <meta property="og:title" content="Rocket Sites — Сайт по цене ужина">
+    <meta property="og:description" content="Готовый сайт за 48 часов. Заполни бриф — получи результат.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            font-family: 'Manrope', sans-serif;
-        }
+        * { font-family: 'Manrope', sans-serif; }
+
         .gradient-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .glow-card {
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
-        }
+
         .glass {
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* ROCKET ANIMATION - STATE: IDLE */
+        /* Rocket Animation */
         .rocket-logo {
             display: inline-block;
             font-size: 2rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.3s;
             animation: float 3s ease-in-out infinite;
             filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(-2deg);
-            }
-            50% {
-                transform: translateY(-10px) rotate(2deg);
-            }
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
 
-        /* ROCKET ANIMATION - STATE: HOVER (LAUNCH) */
-        .rocket-logo:hover {
-            animation: launch 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-            filter: drop-shadow(0 0 20px rgba(139, 92, 246, 1))
-                    drop-shadow(0 0 40px rgba(236, 72, 153, 0.8));
-        }
+        .rocket-logo:hover { animation: launch 0.8s forwards; }
 
         @keyframes launch {
-            0% {
-                transform: translateY(0px) scale(1) rotate(0deg);
-                opacity: 1;
-            }
-            20% {
-                transform: translateY(5px) scale(0.9) rotate(-5deg);
-                opacity: 1;
-            }
-            40% {
-                transform: translateY(-20px) scale(1.1) rotate(5deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-300px) scale(1.3) rotate(15deg);
-                opacity: 0;
-                filter: drop-shadow(0 0 60px rgba(139, 92, 246, 1))
-                       drop-shadow(0 20px 80px rgba(236, 72, 153, 1));
-            }
+            0% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 1; }
+            40% { transform: translateY(-20px) scale(1.1) rotate(5deg); opacity: 1; }
+            100% { transform: translateY(-300px) scale(1.3) rotate(15deg); opacity: 0; }
         }
 
-        /* WARNING ZONE PULSE */
-        .warning-zone {
-            animation: pulse-border 2s ease-in-out infinite;
-        }
+        /* Warning Zone Pulse */
+        .warning-zone { animation: pulse-border 2s ease-in-out infinite; }
 
         @keyframes pulse-border {
-            0%, 100% {
-                border-color: rgba(239, 68, 68, 0.3);
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
-            }
-            50% {
-                border-color: rgba(239, 68, 68, 0.6);
-                box-shadow: 0 0 20px 5px rgba(239, 68, 68, 0.3);
-            }
+            0%, 100% { border-color: rgba(239, 68, 68, 0.3); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            50% { border-color: rgba(239, 68, 68, 0.6); box-shadow: 0 0 20px 5px rgba(239, 68, 68, 0.3); }
+        }
+
+        .mobile-sticky-btn {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Stars Background */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Tech Stack Marquee */
+        .marquee {
+            overflow: hidden;
+            position: relative;
+            background: rgba(15, 23, 42, 0.5);
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            white-space: nowrap;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Pricing Card Glow */
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        /* FAQ Accordion Fixed */
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            background: rgba(15, 23, 42, 0.4);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(167, 139, 250, 0.3);
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            opacity: 1;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item.active .faq-question {
+            color: #c084fc;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.25rem;
+            color: #94a3b8;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: #c084fc;
+        }
+
+        /* Modal Styles */
+        #orderModal { transition: opacity 0.3s ease; }
+        #orderModal.hidden { pointer-events: none; opacity: 0; }
+        #orderModal:not(.hidden) { pointer-events: auto; opacity: 1; }
+
+        /* Portfolio Card Glow */
+        .portfolio-card:hover {
+            box-shadow: 0 0 30px rgba(234, 179, 8, 0.3);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-gray-100 antialiased">
+<body class="bg-slate-950 text-gray-100 antialiased pb-20 sm:pb-0 relative overflow-x-hidden">
 
-    <nav class="fixed top-0 w-full z-50 glass">
+    <div class="stars-container" id="starsContainer"></div>
+
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
                     <span class="rocket-logo relative">🚀</span>
-                    <span class="text-xl font-bold gradient-text">Rocket Sites</span>
+                    <span class="text-xl font-bold gradient-text hidden sm:block">Rocket Sites</span>
                 </div>
-                <a href="#pricing" class="hidden sm:block px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:opacity-90 transition">
-                    Заказать
-                </a>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-white/10">
+                        <button onclick="setCurrency('BYN')" id="btn-byn" class="px-3 py-1 rounded-md text-sm font-bold transition-all bg-purple-600 text-white shadow-lg">BYN</button>
+                        <button onclick="setCurrency('RUB')" id="btn-rub" class="px-3 py-1 rounded-md text-sm font-bold transition-all text-gray-400 hover:text-white">RUB</button>
+                    </div>
+                    <button onclick="openModal()" class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:opacity-90 transition text-sm hidden sm:block">
+                        Заказать
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -112,517 +225,469 @@
         <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
         <div class="max-w-6xl mx-auto text-center relative z-10">
             <div class="inline-block mb-6 px-4 py-2 glass rounded-full text-sm font-medium">
-                🚀 Беларусь • 350 BYN • 48 часов
+                🚀 Готовый сайт за 48 часов
             </div>
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
                 Сайт для бизнеса<br>
-                <span class="gradient-text">по цене ужина в ресторане</span>
+                <span class="gradient-text">по цене ужина</span>
             </h1>
             <p class="text-xl sm:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto">
-                Готовый лендинг за <span class="text-white font-bold">350 BYN</span>.
-                Интернет-магазин за <span class="text-white font-bold">600 BYN</span>.
-                Срок — 48 часов.
+                Лендинг за <span class="text-white font-bold price-landing">350 BYN</span>.
+                Магазин за <span class="text-white font-bold price-shop">950 BYN</span>.
+                <br>Всё включено: дизайн, верстка, домен и хостинг.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#pricing" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-lg hover:scale-105 transition transform shadow-lg shadow-purple-500/50">
-                    Заказать Лендинг
-                </a>
-                <a href="#pricing" class="w-full sm:w-auto px-8 py-4 glass rounded-xl font-bold text-lg hover:bg-white/10 transition">
-                    Заказать Магазин
-                </a>
-            </div>
-            <p class="mt-6 text-sm text-gray-500">
-                ✓ Без предоплаты за бриф • ✓ Работаем официально • ✓ Договор-оферта
-            </p>
-        </div>
-    </section>
-
-    <section class="py-20 px-4 sm:px-6 lg:px-8 relative">
-        <div class="max-w-5xl mx-auto">
-            <div class="glass rounded-3xl p-8 sm:p-12 border-2 border-purple-500/30">
-                <div class="flex items-center gap-3 mb-8">
-                    <svg class="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                    </svg>
-                    <h2 class="text-3xl sm:text-4xl font-bold">Без переплат за штат</h2>
-                </div>
-
-                <p class="text-xl text-gray-300 mb-8">
-                    Почему сайт стоит <span class="text-purple-400 font-bold">350 BYN</span>, а не <span class="line-through text-gray-600">2000 BYN</span>?
-                </p>
-
-                <div class="grid sm:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-slate-900/50 rounded-xl p-6 border border-purple-500/20">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-purple-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Без менеджеров</h3>
-                                <p class="text-gray-400 text-sm">Никаких звонков «для уточнения». Всё через подробный бриф.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-900/50 rounded-xl p-6 border border-purple-500/20">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-purple-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Без созвонов</h3>
-                                <p class="text-gray-400 text-sm">Нулевых совещаний. Вы пишете — мы делаем.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-900/50 rounded-xl p-6 border border-purple-500/20">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-purple-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                            </svg>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Строго по брифу</h3>
-                                <p class="text-gray-400 text-sm">Вы заполнили — мы сделали. Один раз. Точно.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-900/50 rounded-xl p-6 border border-red-500/20">
-                        <div class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-red-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-                            </svg>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Правки = Деньги</h3>
-                                <p class="text-gray-400 text-sm">Хотите изменить цвет после сдачи? От 50 BYN.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl p-6 border border-purple-500/30">
-                    <p class="text-lg">
-                        <span class="font-bold text-purple-400">⚡ Итог:</span>
-                        Вы платите за результат, а не за бесконечные согласования.
-                        Поэтому <span class="font-bold">350 BYN</span>, а не <span class="line-through text-gray-600">2000 BYN</span>.
-                    </p>
-                </div>
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 glass rounded-xl font-bold text-lg hover:bg-white/10 transition">Смотреть работы</a>
+                <button onclick="openModal()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-lg hover:scale-105 transition transform shadow-lg shadow-purple-500/50">
+                    Начать проект
+                </button>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16">
-                Что <span class="gradient-text">включено</span>
-            </h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="sm:col-span-2 sm:row-span-2 glass rounded-3xl p-8 hover:border-purple-500/50 transition">
-                    <svg class="w-12 h-12 text-purple-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
-                    <h3 class="text-2xl font-bold mb-3">Молниеносная скорость</h3>
-                    <p class="text-gray-400">Оптимизированный код. Время загрузки до 1 секунды. Google PageSpeed 90+.</p>
-                </div>
-
-                <div class="glass rounded-3xl p-6 hover:border-purple-500/50 transition">
-                    <svg class="w-10 h-10 text-pink-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-                    </svg>
-                    <h3 class="text-lg font-bold mb-2">Хостинг на год</h3>
-                    <p class="text-sm text-gray-400">Включён бесплатно</p>
-                </div>
-
-                <div class="glass rounded-3xl p-6 hover:border-purple-500/50 transition">
-                    <svg class="w-10 h-10 text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                    </svg>
-                    <h3 class="text-lg font-bold mb-2">Домен</h3>
-                    <p class="text-sm text-gray-400">Поможем подобрать</p>
-                </div>
-
-                <div class="glass rounded-3xl p-6 hover:border-purple-500/50 transition">
-                    <svg class="w-10 h-10 text-green-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                    </svg>
-                    <h3 class="text-lg font-bold mb-2">Адаптив</h3>
-                    <p class="text-sm text-gray-400">Все устройства</p>
-                </div>
-
-                <div class="glass rounded-3xl p-6 hover:border-purple-500/50 transition">
-                    <svg class="w-10 h-10 text-yellow-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
-                    <h3 class="text-lg font-bold mb-2">SSL сертификат</h3>
-                    <p class="text-sm text-gray-400">HTTPS из коробки</p>
-                </div>
-
-                <div class="sm:col-span-2 glass rounded-3xl p-6 hover:border-purple-500/50 transition">
-                    <svg class="w-10 h-10 text-purple-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2">Форма обратной связи</h3>
-                    <p class="text-gray-400">Заявки приходят на вашу почту или в Telegram-бот</p>
-                </div>
-            </div>
+    <section class="marquee py-4 relative z-10">
+        <div class="marquee-content">
+            <div class="tech-item">⚡ HTML5</div>
+            <div class="tech-item">🎨 CSS3</div>
+            <div class="tech-item">🐍 Python</div>
+            <div class="tech-item">⚙️ Nginx</div>
+            <div class="tech-item">🐧 Linux</div>
+            <div class="tech-item">💬 Telegram API</div>
+            <div class="tech-item">🔒 SSL</div>
+            <div class="tech-item">🚀 JavaScript</div>
+            <div class="tech-item">⚡ HTML5</div>
+            <div class="tech-item">🎨 CSS3</div>
+            <div class="tech-item">🐍 Python</div>
+            <div class="tech-item">⚙️ Nginx</div>
+            <div class="tech-item">🐧 Linux</div>
+            <div class="tech-item">💬 Telegram API</div>
+            <div class="tech-item">🔒 SSL</div>
+            <div class="tech-item">🚀 JavaScript</div>
         </div>
     </section>
 
-    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8">
+    <section class="py-12 px-4 sm:px-6 lg:px-8 border-y border-white/5 bg-slate-900/50 relative z-10">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-4">
-                Выберите <span class="gradient-text">тариф</span>
-            </h2>
-            <p class="text-center text-gray-400 mb-16 text-lg">Без скрытых платежей. Цена финальная.</p>
+            <div class="grid md:grid-cols-3 gap-8 text-center relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500/0 via-purple-500/30 to-purple-500/0 -translate-y-1/2 z-0"></div>
+                <div class="relative z-10">
+                    <div class="w-16 h-16 mx-auto bg-slate-800 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-purple-500/30 shadow-lg shadow-purple-500/20">📝</div>
+                    <h3 class="text-xl font-bold mb-2">1. Заявка</h3>
+                    <p class="text-gray-400 text-sm">Получаете номер заказа на сайте.</p>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-16 h-16 mx-auto bg-slate-800 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-purple-500/30 shadow-lg shadow-purple-500/20">💳</div>
+                    <h3 class="text-xl font-bold mb-2">2. Оплата</h3>
+                    <p class="text-gray-400 text-sm">Оплачиваете через DonationAlerts.</p>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-16 h-16 mx-auto bg-slate-800 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-green-500/30 shadow-lg shadow-green-500/20">📄</div>
+                    <h3 class="text-xl font-bold mb-2">3. Бриф</h3>
+                    <p class="text-gray-400 text-sm">Заполняете анкету и получаете сайт.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl sm:text-5xl font-bold text-center mb-4">Наши <span class="gradient-text">работы</span></h2>
+            <div class="grid md:grid-cols-2 gap-8 mt-12">
+                <div class="portfolio-card glass rounded-3xl overflow-hidden border border-white/5 hover:border-yellow-500/50 transition group">
+                    <div class="h-64 bg-slate-800 relative overflow-hidden">
+                        <img src="3214.png" alt="Аренда спецтехники" class="w-full h-full object-cover transition duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                        <div class="absolute top-4 left-4 bg-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold">Спецтехника</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Аренда автокрана «Мошека»</h3>
+                        <p class="text-gray-400 text-sm">Корпоративный лендинг. Срок: 48 часов.</p>
+                    </div>
+                </div>
+                <div class="glass rounded-3xl p-8 border border-white/5 flex flex-col justify-center items-center text-center relative overflow-hidden group">
+                    <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition text-4xl">🚀</div>
+                    <h3 class="text-2xl font-bold mb-2">Здесь будет ваш сайт</h3>
+                    <button onclick="openModal()" class="mt-4 px-6 py-3 border border-purple-500/50 rounded-xl text-purple-300 hover:bg-purple-500 hover:text-white transition">Занять место</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 border-y border-white/5 bg-slate-900/30 relative z-10">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl sm:text-5xl font-bold text-center mb-12">Отзывы <span class="gradient-text">клиентов</span></h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass rounded-2xl p-6 border border-white/5">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-xl font-bold">М</div>
+                        <div>
+                            <div class="font-bold">Михаил К.</div>
+                            <div class="text-xs text-gray-400">Директор</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm">"Заказал лендинг для бизнеса по аренде спецтехники. Получил через 2 дня, всё чётко и без воды. Клиенты звонят."</p>
+                </div>
+                <div class="glass rounded-2xl p-6 border border-white/5">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-xl font-bold">А</div>
+                        <div>
+                            <div class="font-bold">Анна С.</div>
+                            <div class="text-xs text-gray-400">Владелица магазина</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm">"Нужен был простой магазин на 30 товаров. Цена адекватная, сделали быстро. Теперь не завишу от Instagram."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16">Тарифы</h2>
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="glass rounded-3xl p-8 hover:scale-105 transition transform flex flex-col">
-                    <div class="text-sm font-semibold text-purple-400 mb-2">ДЛЯ СТАРТА</div>
+                <div class="pricing-card glass rounded-3xl p-8 border border-white/5 flex flex-col">
+                    <div class="text-sm font-semibold text-purple-400 mb-2">БЫСТРЫЙ СТАРТ</div>
                     <h3 class="text-3xl font-bold mb-2">Лендинг</h3>
                     <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-5xl font-extrabold">350</span>
-                        <span class="text-2xl text-gray-400">BYN</span>
+                        <span class="text-5xl font-extrabold price-landing-num">350</span>
+                        <span class="text-2xl text-gray-400 currency-label">BYN</span>
                     </div>
-
-                    <ul class="space-y-3 mb-8 flex-1">
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Одностраничный сайт</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Форма заявки</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Адаптация под мобильные</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Хостинг на 12 месяцев</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Базовая SEO-настройка</span>
-                        </li>
+                    <ul class="space-y-3 mb-8 flex-1 text-gray-300">
+                        <li class="flex gap-3"><span class="text-green-500">✓</span> Одностраничный сайт</li>
+                        <li class="flex gap-3"><span class="text-green-500">✓</span> Домен <span class="domain-zone">.by</span> + Хостинг</li>
                     </ul>
-
-                    <a href="#" class="block w-full py-4 bg-purple-600 hover:bg-purple-700 rounded-xl font-bold text-center transition">
-                        Заказать лендинг
-                    </a>
+                    <button onclick="openModal('Лендинг')" class="block w-full py-4 bg-purple-600 hover:bg-purple-700 rounded-xl font-bold text-center transition">Заказать Лендинг</button>
                 </div>
-
-                <div class="glass rounded-3xl p-8 glow-card border-2 border-purple-500/50 hover:scale-105 transition transform relative flex flex-col">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm font-bold">
-                        ПОПУЛЯРНЫЙ
-                    </div>
+                <div class="pricing-card glass rounded-3xl p-8 border-2 border-purple-500/50 relative flex flex-col">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm font-bold shadow-lg">ХИТ</div>
                     <div class="text-sm font-semibold text-pink-400 mb-2">ДЛЯ ПРОДАЖ</div>
-                    <h3 class="text-3xl font-bold mb-2">Интернет-магазин</h3>
+                    <h3 class="text-3xl font-bold mb-2">Мини-Магазин</h3>
                     <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-5xl font-extrabold">600</span>
-                        <span class="text-2xl text-gray-400">BYN</span>
+                        <span class="text-5xl font-extrabold price-shop-num">950</span>
+                        <span class="text-2xl text-gray-400 currency-label">BYN</span>
                     </div>
-
-                    <ul class="space-y-3 mb-8 flex-1">
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Всё что в «Лендинге»</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Каталог товаров</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Корзина и оформление заказа</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">Простая админ-панель</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300">До 100 товаров</span>
-                        </li>
+                    <ul class="space-y-3 mb-8 flex-1 text-gray-300">
+                        <li class="flex gap-3"><span class="text-green-500">✓</span> Всё что в «Лендинге»</li>
+                        <li class="flex gap-3"><span class="text-green-500">✓</span> Каталог до 50 товаров</li>
                     </ul>
-
-                    <a href="#" class="block w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 rounded-xl font-bold text-center transition">
-                        Заказать магазин
-                    </a>
+                    <button onclick="openModal('Магазин')" class="block w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 rounded-xl font-bold text-center transition">Заказать Магазин</button>
                 </div>
             </div>
-
-            <p class="text-center mt-12 text-gray-500 text-sm">
-                💳 Оплата картой, ЕРИП, банковский перевод • 📄 Работаем с договором
-            </p>
         </div>
     </section>
 
-    <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <section class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-5xl mx-auto">
-            <div class="warning-zone bg-red-900/20 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border-2 border-red-500/30 relative overflow-hidden">
-                <div class="absolute inset-0 opacity-5">
-                    <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(239, 68, 68, 0.5) 10px, rgba(239, 68, 68, 0.5) 20px);"></div>
+            <div class="warning-zone bg-red-900/20 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border-2 border-red-500/30">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-4xl">🚧</span>
+                    <h2 class="text-3xl font-bold text-red-400">Зона платных правок</h2>
                 </div>
-
-                <div class="relative z-10">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="text-4xl">🚧</span>
-                        <h2 class="text-3xl sm:text-4xl font-bold text-red-400">Зона платных правок</h2>
-                    </div>
-
-                    <div class="space-y-6">
-                        <p class="text-xl text-gray-200 leading-relaxed">
-                            <span class="font-bold text-red-400">Почему так дешево?</span>
-                            Потому что мы <span class="font-bold underline decoration-red-500">не включаем</span> в цену стоимость болтовни менеджеров, бесконечных созвонов и правок.
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <p class="text-gray-200 text-lg">
+                            Мы держим цену низкой, потому что работаем <span class="text-white font-bold">четко по вашему брифу</span>.
                         </p>
-
-                        <div class="glass rounded-2xl p-6 border border-red-500/20">
-                            <p class="text-lg text-gray-300 leading-relaxed mb-4">
-                                Сайт делается <span class="font-bold text-white">строго по вашему брифу</span>.
-                                Один раз. Точно. Быстро.
-                            </p>
-                            <p class="text-lg text-gray-300 leading-relaxed">
-                                Все ваши <span class="text-red-400 font-semibold">"хотелки"</span> и изменения после сдачи проекта — <span class="font-bold text-red-400">платные</span>.
-                            </p>
-                        </div>
-
-                        <div class="bg-gradient-to-r from-red-950/50 to-orange-950/50 rounded-2xl p-6 border border-red-500/40">
-                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                <div>
-                                    <p class="text-sm text-red-300 mb-1 font-semibold">ТАРИФ НА ПРАВКИ</p>
-                                    <p class="text-gray-300">
-                                        Изменить текст, цвет кнопки, переместить блок, добавить фото
-                                    </p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <div class="inline-block px-6 py-3 bg-red-600/30 border-2 border-red-500 rounded-xl">
-                                        <span class="text-3xl font-extrabold text-red-400">50 BYN</span>
-                                        <span class="text-sm text-gray-400 ml-1">/час</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-3 bg-slate-900/30 rounded-xl p-4 border border-red-500/10">
-                            <svg class="w-6 h-6 text-yellow-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                            </svg>
-                            <p class="text-sm text-gray-400">
-                                <span class="font-semibold text-gray-200">Это не недостаток — это фишка.</span>
-                                Мы отпугиваем "душных" клиентов с бесконечными правками и держим цену 350 BYN для адекватных людей, которые могут один раз подумать и заполнить нормальный бриф.
-                            </p>
-                        </div>
+                        <p class="text-gray-400 text-sm mt-2">
+                            Если вы захотите изменить что-то после сдачи проекта — мы с радостью поможем, но это будет считаться отдельной услугой по часовому тарифу.
+                        </p>
+                    </div>
+                    <div class="glass p-4 rounded-xl border border-red-500/40 text-center min-w-[180px]">
+                        <div class="text-sm text-red-300 font-bold">ТАРИФ</div>
+                        <div class="text-2xl font-extrabold text-red-400 price-edit">50 BYN</div>
+                        <div class="text-xs text-gray-500">в час</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">Вопросы</span> и ответы
-            </h2>
+            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-4">Частые <span class="gradient-text">вопросы</span></h2>
+            <p class="text-center text-gray-400 mb-12">Коротко и по делу.</p>
 
             <div class="space-y-4">
-                <details class="glass rounded-2xl p-6 group">
-                    <summary class="font-bold text-lg cursor-pointer list-none flex justify-between items-center">
-                        <span>А это не кидалово? Почему так дешево?</span>
-                        <svg class="w-5 h-5 text-purple-500 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </summary>
-                    <p class="text-gray-400 mt-4 leading-relaxed">
-                        Мы убрали всё, что стоит дорого: менеджеров, бесконечные встречи и правки.
-                        Вы заполняете бриф один раз — мы делаем сайт строго по нему.
-                        Никаких "а давайте ещё раз переделаем". Это не кидалово, это просто другая бизнес-модель.
-                        Работаем официально, с договором.
-                    </p>
-                </details>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="text-lg">Почему такая низкая цена?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                            У нас нет офиса, секретарей и раздутого штата менеджеров. Вы платите только за работу разработчика и автоматизированный процесс. Мы не экономим на качестве, мы убрали лишние расходы.
+                        </div>
+                    </div>
+                </div>
 
-                <details class="glass rounded-2xl p-6 group">
-                    <summary class="font-bold text-lg cursor-pointer list-none flex justify-between items-center">
-                        <span>Почему без правок? Это же неудобно!</span>
-                        <svg class="w-5 h-5 text-purple-500 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </summary>
-                    <p class="text-gray-400 mt-4 leading-relaxed">
-                        Потому что на правки уходит 80% времени разработки. В обычных агентствах клиент меняет мнение
-                        10 раз, дизайнер переделывает, менеджер согласовывает — в итоге цена улетает до 2000 BYN.
-                        Мы предлагаем вам один раз хорошо подумать, заполнить подробный бриф — и получить готовый
-                        сайт за 350 BYN. Правки можно, но платно (от 20 BYN/час).
-                    </p>
-                </details>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="text-lg">Это конструктор (Tilda/Wix) или код?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                            Это чистый код (HTML, CSS, JS). Сайт будет работать очень быстро, его любят поисковики, и за него не нужно платить ежемесячную подписку, как на конструкторах.
+                        </div>
+                    </div>
+                </div>
 
-                <details class="glass rounded-2xl p-6 group">
-                    <summary class="font-bold text-lg cursor-pointer list-none flex justify-between items-center">
-                        <span>Что если мне не понравится результат?</span>
-                        <svg class="w-5 h-5 text-purple-500 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </summary>
-                    <p class="text-gray-400 mt-4 leading-relaxed">
-                        Мы делаем сайт строго по вашему брифу. Если вы подробно описали, что хотите видеть —
-                        результат будет именно таким. "Не понравилось" на субъективном уровне — не основание для возврата.
-                        Но если есть технический брак (сайт не открывается, кнопка не работает) — исправим бесплатно
-                        в течение 14 дней.
-                    </p>
-                </details>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="text-lg">Кому принадлежит домен?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                            Только вам. Мы регистрируем домен и хостинг на ваши паспортные данные. После сдачи проекта мы передаем вам все логины и пароли. Вы — полноправный владелец.
+                        </div>
+                    </div>
+                </div>
 
-                <details class="glass rounded-2xl p-6 group">
-                    <summary class="font-bold text-lg cursor-pointer list-none flex justify-between items-center">
-                        <span>Сколько платить за хостинг потом?</span>
-                        <svg class="w-5 h-5 text-purple-500 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </summary>
-                    <p class="text-gray-400 mt-4 leading-relaxed">
-                        Первый год хостинга уже включён в стоимость (350 BYN или 600 BYN).
-                        Со второго года продление от 50 BYN/год. Вы получите уведомление за месяц до окончания.
-                        Можете перенести сайт на свой хостинг — передадим все файлы.
-                    </p>
-                </details>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="text-lg">Что если сайт сломается?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                            Мы даем гарантию 14 дней. Если вы найдете техническую ошибку (не работает кнопка, поехала верстка) — мы исправим это бесплатно и моментально.
+                        </div>
+                    </div>
+                </div>
 
-                <details class="glass rounded-2xl p-6 group">
-                    <summary class="font-bold text-lg cursor-pointer list-none flex justify-between items-center">
-                        <span>У меня нет текстов и фото. Что делать?</span>
-                        <svg class="w-5 h-5 text-purple-500 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </summary>
-                    <p class="text-gray-400 mt-4 leading-relaxed">
-                        Фото можем подобрать из бесплатных стоков (если это подходит для вашего бизнеса).
-                        Тексты — поможем структурировать из той информации, что вы предоставите в брифе.
-                        Но если нужен полноценный копирайтинг (написание текстов с нуля) — это отдельная услуга от 150 BYN.
-                    </p>
-                </details>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="text-lg">Можно ли потом расширить функционал?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                            Да, конечно. Так как это открытый код, любой программист сможет его доработать. Или вы можете снова обратиться к нам за доплату.
+                        </div>
+                    </div>
+                </div>
 
-                <details class="glass rounded-2xl p-6 group">
-                    <summary class="font-bold text-lg cursor-pointer list-none flex justify-between items-center">
-                        <span>Как быстро можно начать?</span>
-                        <svg class="w-5 h-5 text-purple-500 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </summary>
-                    <p class="text-gray-400 mt-4 leading-relaxed">
-                        Прямо сейчас. Заполняете бриф (10-15 минут), вносите оплату — работа стартует
-                        в течение 1 рабочего дня. Сайт готов через 48 часов. Это быстрее, чем дождаться
-                        первой встречи в обычном агентстве.
-                    </p>
-                </details>
-            </div>
-        </div>
-    </section>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="text-lg">Как происходит оплата?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                            Мы используем сервис DonationAlerts. Это позволяет принимать оплату картами любых стран (Беларусь, Россия, Мир) быстро и безопасно.
+                        </div>
+                    </div>
+                </div>
 
-    <section class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="glass rounded-3xl p-12 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20"></div>
-                <div class="relative z-10">
-                    <h2 class="text-3xl sm:text-5xl font-bold mb-6">
-                        Готовы запустить сайт<br>
-                        <span class="gradient-text">за 350 BYN?</span>
-                    </h2>
-                    <p class="text-xl text-gray-300 mb-8">
-                        Заполните бриф прямо сейчас — это займёт 10 минут.<br>
-                        Через 48 часов ваш бизнес будет в интернете.
-                    </p>
-                    <a href="#" class="inline-block px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-xl hover:scale-105 transition transform shadow-2xl shadow-purple-500/50">
-                        Заполнить бриф и заказать →
-                    </a>
-                    <p class="mt-6 text-sm text-gray-500">
-                        ✓ Без предоплаты за бриф • ✓ Договор-оферта • ✓ Старт за 1 день
-                    </p>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="text-lg">Нужно ли мне писать тексты?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                            Желательно, ведь вы лучше знаете свой бизнес. Но если текстов нет — не страшно. Мы напишем базовые продающие тексты сами, основываясь на ваших ответах в брифе.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="text-lg">А если мне не понравится дизайн?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                            Мы работаем по вашему Брифу. Вы показываете примеры, которые вам нравятся — мы делаем в таком же стиле. Если мы сделали по ТЗ, но вы передумали — переделка возможна, но уже платно. Это честный подход.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+    <section class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-slate-900/30 relative z-10">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-8">
+            <div class="w-32 h-32 rounded-full bg-slate-800 overflow-hidden flex-shrink-0 border-2 border-purple-500/30">
+                 <img src="photo.jpg" alt="Александр Трофимов" class="w-full h-full object-cover">
+            </div>
+            <div class="text-center sm:text-left">
+                <h2 class="text-2xl font-bold mb-1">Александр Трофимов</h2>
+                <p class="text-purple-400 font-medium mb-4">Full Stack Developer</p>
+                <div class="text-gray-300 leading-relaxed space-y-2">
+                    <p>4 года опыта. Высшее техническое образование.</p>
+                    <p>Я убрал из процесса разработки всё лишнее: бесконечные совещания, согласования цветов и бюрократию. Я просто беру вашу задачу и превращаю её в рабочий код за 48 часов.</p>
+                    <p class="text-sm text-gray-500">Я отвечаю за каждый этап: от покупки домена до настройки сервера. Вы получаете готовый продукт из одних рук.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800 text-center relative z-10">
         <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <span class="text-2xl">🚀</span>
-                        <span class="text-lg font-bold gradient-text">Rocket Sites</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">
-                        Готовые сайты для малого бизнеса в Беларуси.
-                        Быстро, дешево, без лишних слов.
-                    </p>
-                </div>
-
-                <div>
-                    <h3 class="font-bold mb-4">Контакты</h3>
-                    <div class="space-y-2 text-gray-400 text-sm">
-                        <a href="https://t.me/rocketsites" class="flex items-center gap-2 hover:text-purple-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                            </svg>
-                            @rocketsites
-                        </a>
-                        <a href="mailto:info@rocketsites.by" class="flex items-center gap-2 hover:text-purple-400 transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                            info@rocketsites.by
-                        </a>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="font-bold mb-4">Документы</h3>
-                    <div class="space-y-2 text-gray-400 text-sm">
-                        <a href="#" class="block hover:text-purple-400 transition">Публичная оферта</a>
-                        <a href="#" class="block hover:text-purple-400 transition">Политика конфиденциальности</a>
-                        <a href="#" class="block hover:text-purple-400 transition">Примеры работ</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-                <p>© 2026 Rocket Sites. ИП [Ваши данные], УНП [номер]</p>
-                <p class="mt-2">Беларусь • Минск • Сайты от 350 BYN</p>
-            </div>
+            <p class="text-gray-400 text-sm">© 2026 Rocket Sites. ИП Трофимов А.С.</p>
         </div>
     </footer>
 
+    <div class="fixed bottom-0 left-0 w-full p-4 sm:hidden z-40 mobile-sticky-btn border-t border-white/10">
+        <button onclick="openModal()" class="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-center text-white shadow-lg">
+            Заказать сайт
+        </button>
+    </div>
+
+    <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <div class="relative bg-slate-900 border border-purple-500/30 rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl leading-none">✕</button>
+
+            <div id="formState">
+                <h2 class="text-2xl font-bold mb-2">Начать проект 🚀</h2>
+                <p class="text-gray-400 mb-6 text-sm">Сформируйте заказ, чтобы получить номер.</p>
+                <form onsubmit="generateOrder(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Ваше имя</label>
+                        <input type="text" id="clientName" required class="w-full bg-slate-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500 placeholder-gray-500" placeholder="Иван">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Тариф</label>
+                        <select id="clientType" class="w-full bg-slate-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500">
+                            <option value="Лендинг">Лендинг (350 BYN / 10к RUB)</option>
+                            <option value="Магазин">Магазин (950 BYN / 25к RUB)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-purple-600 hover:bg-purple-700 rounded-xl font-bold text-lg mt-4 transition">Сформировать заказ</button>
+                </form>
+            </div>
+
+            <div id="successState" class="hidden text-center">
+                <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">✓</div>
+                <h3 class="text-xl font-bold text-gray-400 mb-2">Заказ сформирован!</h3>
+
+                <div class="bg-slate-800 rounded-lg p-4 mb-6 border border-white/10">
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Ваш номер заказа</p>
+                    <p class="text-3xl font-extrabold text-white tracking-wider" id="displayOrderId">RS-XXXX</p>
+                    <p class="text-xs text-gray-500 mt-2">Сохраните его для оплаты</p>
+                </div>
+
+                <div class="space-y-3">
+                    <a href="#" id="linkPayment" target="_blank" class="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-white hover:opacity-90 transition">
+                        💳 1. Оплатить заказ
+                    </a>
+
+                    <a href="#" id="linkBrief" target="_blank" class="block w-full py-3 bg-slate-800 border border-green-500/50 text-green-400 hover:bg-green-500/10 rounded-xl font-bold transition">
+                        📝 2. Заполнить Бриф
+                    </a>
+                </div>
+                <p class="text-xs text-gray-500 mt-4">Укажите номер заказа в комментарии к оплате и в первом вопросе брифа.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+        // --- НАСТРОЙКИ ССЫЛОК ---
+        const DONATION_LINK = 'https://www.donationalerts.com/r/rocketsite';
+        const FORM_LINK_TEMPLATE = 'brief.html?order=ORDER_ID'
+        // -----------------------
+
+        // Generate Stars
+        function generateStars() {
+            const container = document.getElementById('starsContainer');
+            const starCount = 100;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.opacity = Math.random() * 0.5 + 0.3;
+                container.appendChild(star);
+            }
+        }
+
+        // Modal Logic
+        const modal = document.getElementById('orderModal');
+        const formState = document.getElementById('formState');
+        const successState = document.getElementById('successState');
+
+        function openModal(siteType) {
+            modal.classList.remove('hidden');
+            if(siteType) document.getElementById('clientType').value = siteType;
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            setTimeout(() => {
+                formState.classList.remove('hidden');
+                successState.classList.add('hidden');
+                document.getElementById('displayOrderId').innerText = 'RS-XXXX';
+            }, 300);
+        }
+
+        // Generate Order Logic
+        function generateOrder(e) {
+            e.preventDefault();
+
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const orderId = `RS-${randomNum}`;
+
+            document.getElementById('displayOrderId').innerText = orderId;
+            document.getElementById('linkPayment').href = DONATION_LINK;
+
+            const finalFormLink = FORM_LINK_TEMPLATE.replace('ORDER_ID', orderId);
+            document.getElementById('linkBrief').href = finalFormLink;
+
+            formState.classList.add('hidden');
+            successState.classList.remove('hidden');
+        }
+
+        // Improved FAQ Toggle Logic
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+
+            // Close all other items (Optional: remove this block if you want multiple open)
+            document.querySelectorAll('.faq-item').forEach(el => {
+                el.classList.remove('active');
             });
+
+            // Toggle clicked item
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Currency Logic
+        const prices = {
+            BYN: { landing: '350 BYN', landingNum: '350', shop: '950 BYN', shopNum: '950', edit: '50 BYN', label: 'BYN', domain: '.by' },
+            RUB: { landing: '10 000 ₽', landingNum: '10k', shop: '25 000 ₽', shopNum: '25k', edit: '1 500 ₽', label: 'RUB', domain: '.ru' }
+        };
+
+        function setCurrency(currency) {
+            const data = prices[currency];
+            document.querySelectorAll('.price-landing').forEach(el => el.innerText = data.landing);
+            document.querySelectorAll('.price-landing-num').forEach(el => el.innerText = data.landingNum);
+            document.querySelectorAll('.price-shop').forEach(el => el.innerText = data.shop);
+            document.querySelectorAll('.price-shop-num').forEach(el => el.innerText = data.shopNum);
+            document.querySelectorAll('.price-edit').forEach(el => el.innerText = data.edit);
+            document.querySelectorAll('.currency-label').forEach(el => el.innerText = data.label);
+            document.querySelectorAll('.domain-zone').forEach(el => el.innerText = data.domain);
+
+            const btnByn = document.getElementById('btn-byn');
+            const btnRub = document.getElementById('btn-rub');
+            if (currency === 'BYN') {
+                btnByn.className = 'px-3 py-1 rounded-md text-sm font-bold transition-all bg-purple-600 text-white shadow-lg';
+                btnRub.className = 'px-3 py-1 rounded-md text-sm font-bold transition-all text-gray-400 hover:text-white';
+            } else {
+                btnRub.className = 'px-3 py-1 rounded-md text-sm font-bold transition-all bg-purple-600 text-white shadow-lg';
+                btnByn.className = 'px-3 py-1 rounded-md text-sm font-bold transition-all text-gray-400 hover:text-white';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            generateStars();
         });
     </script>
-
 </body>
 </html>

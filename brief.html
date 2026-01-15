@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бриф на разработку — Rocket Sites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Manrope', sans-serif; }
+        .glass {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .form-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+        .form-sublabel {
+            display: block;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #a855f7;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2);
+            background: rgba(15, 23, 42, 1);
+        }
+        /* Stars Background */
+        .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; background: #020617; }
+        .star { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; opacity: 0.3; }
+
+        /* Progress Bar */
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            z-index: 100;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9333ea, #ec4899);
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body class="text-gray-100 antialiased min-h-screen">
+
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="progress-bar-container"><div class="progress-bar" id="progressBar"></div></div>
+
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <a href="index.html" class="inline-block text-4xl mb-4 hover:scale-110 transition">🚀</a>
+            <h1 class="text-3xl sm:text-4xl font-bold mb-4">Бриф на разработку</h1>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Чтобы мы сделали идеальный сайт <b>без лишних вопросов и звонков</b>, заполните эту анкету максимально подробно.
+            </p>
+        </div>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="briefForm">
+
+            <div class="form-section">
+                <h2 class="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                    <span class="bg-purple-500/20 w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                    Контактные данные
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="form-label">Номер заказа (ID) *</label>
+                        <input type="text" name="OrderID" id="orderIdField" required readonly class="form-input bg-slate-900/50 text-gray-500 cursor-not-allowed">
+                    </div>
+                    <div>
+                        <label class="form-label">Как к вам обращаться? (ФИО) *</label>
+                        <input type="text" name="ClientName" required class="form-input" placeholder="Иван Иванов">
+                    </div>
+                    <div>
+                        <label class="form-label">Способ связи *</label>
+                        <select name="MessengerType" class="form-select">
+                            <option>Telegram (Приоритет)</option>
+                            <option>WhatsApp</option>
+                            <option>Viber</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Никнейм или Номер *</label>
+                        <input type="text" name="Contact" required class="form-input" placeholder="@username или +375...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                    <span class="bg-purple-500/20 w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                    Маркетинг и Смыслы
+                </h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="form-label">Чем вы занимаетесь? *</label>
+                        <input type="text" name="Niche" required class="form-input" placeholder="Например: Аренда авто в Минске / Маникюрный салон">
+                    </div>
+
+                    <div>
+                        <label class="form-label">Главное преимущество (УТП) *</label>
+                        <span class="form-sublabel">Почему клиент должен купить у ВАС, а не у конкурента? (Цифры, опыт, скорость)</span>
+                        <textarea name="Advantages" rows="4" required class="form-textarea" placeholder="1. Работаем круглосуточно&#10;2. Доставка за 30 минут&#10;3. Цены ниже рынка на 10%..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="form-label">География работы *</label>
+                        <input type="text" name="Geo" required class="form-input" placeholder="Только Минск / Вся Беларусь / Россия и СНГ">
+                    </div>
+
+                    <div>
+                        <label class="form-label">Кто ваша целевая аудитория?</label>
+                        <span class="form-sublabel">Возраст, пол, интересы. Кто платит деньги?</span>
+                        <textarea name="TargetAudience" rows="2" class="form-textarea" placeholder="Мужчины 30-50 лет, автовладельцы, средний доход..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Тон общения (Tone of Voice)</label>
+                        <select name="ToneOfVoice" class="form-select">
+                            <option>Деловой и строгий (На «Вы», официально)</option>
+                            <option>Дружелюбный и заботливый</option>
+                            <option>Дерзкий и молодежный (На «Ты»)</option>
+                            <option>Дорогой и премиальный</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                    <span class="bg-purple-500/20 w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                    Наполнение сайта
+                </h2>
+
+                <div class="space-y-8">
+                    <div class="p-4 bg-slate-800 rounded-xl border border-white/5">
+                        <h3 class="font-bold text-white mb-4">Первый экран (Самое важное)</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="form-label">Главный заголовок *</label>
+                                <span class="form-sublabel">Крупный текст, который продает.</span>
+                                <input type="text" name="HeroTitle" required class="form-input" placeholder="Ремонт квартир под ключ с гарантией 5 лет">
+                            </div>
+                            <div>
+                                <label class="form-label">Подзаголовок</label>
+                                <input type="text" name="HeroSubtitle" class="form-input" placeholder="Смета не меняется в процессе. Выезд замерщика 0 руб.">
+                            </div>
+                            <div>
+                                <label class="form-label">Надпись на главной кнопке *</label>
+                                <input type="text" name="HeroButton" required class="form-input" placeholder="Рассчитать стоимость / Скачать прайс">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Меню сайта (Пункты)</label>
+                        <span class="form-sublabel">Что должно быть в шапке?</span>
+                        <input type="text" name="Menu" class="form-input" placeholder="О нас, Услуги, Цены, Отзывы, Контакты">
+                    </div>
+
+                    <div>
+                        <label class="form-label">Ваши товары или услуги (Список) *</label>
+                        <span class="form-sublabel">Название + Цена. Если товаров много — приложите ссылку на Google Таблицу в конце.</span>
+                        <textarea name="ProductsList" rows="6" required class="form-textarea" placeholder="1. Услуга А — 100 BYN&#10;2. Услуга Б — 200 BYN..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Контакты для подвала *</label>
+                        <span class="form-sublabel">Всё, что нужно указать внизу сайта.</span>
+                        <textarea name="FooterContacts" rows="4" required class="form-textarea" placeholder="Телефон: +375...&#10;Адрес: г. Минск...&#10;Email: ...&#10;Время работы: ...&#10;Инстаграм: ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                    <span class="bg-purple-500/20 w-8 h-8 rounded-full flex items-center justify-center text-sm">4</span>
+                    Дизайн (Визуал)
+                </h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="form-label">Сайты, которые вам нравятся (Референсы) *</label>
+                        <span class="form-sublabel">Вставьте 2-3 ссылки. Напишите, ЧТО именно нравится (цвета, логика, шрифт).</span>
+                        <textarea name="DesignRefs" rows="3" required class="form-textarea"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Сайты, которые НЕ нравятся</label>
+                        <span class="form-sublabel">Что нам точно НЕЛЬЗЯ делать? (Красный цвет, вылетающие окна и т.д.)</span>
+                        <textarea name="AntiRefs" rows="2" class="form-textarea"></textarea>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="form-label">Предпочтения по цветам *</label>
+                            <input type="text" name="Colors" required class="form-input" placeholder="Темный фон, синие кнопки...">
+                        </div>
+                        <div>
+                            <label class="form-label">Форма элементов</label>
+                            <select name="ShapeStyle" class="form-select">
+                                <option>Закругленные (Мягкий стиль)</option>
+                                <option>Прямые углы (Строгий стиль)</option>
+                                <option>Не важно / На усмотрение дизайнера</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Шрифты</label>
+                            <select name="FontPreferences" class="form-select">
+                                <option>Современные (Без засечек, как здесь)</option>
+                                <option>Классические (С засечками, как в книгах)</option>
+                                <option>На усмотрение дизайнера</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Анимация на сайте</label>
+                            <select name="Animations" class="form-select">
+                                <option>Умеренная (Плавное появление)</option>
+                                <option>Минимальная (Быстрая загрузка)</option>
+                                <option>Активная (Вау-эффекты)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                    <span class="bg-purple-500/20 w-8 h-8 rounded-full flex items-center justify-center text-sm">5</span>
+                    Техническая часть
+                </h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="form-label">Домен (Адрес сайта) *</label>
+                        <input type="text" name="Domain" required class="form-input" placeholder="mycompany.by">
+                        <p class="text-xs text-gray-500 mt-2">Паспортные данные для регистрации мы запросим лично в Telegram.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="form-label">Нужна ли Яндекс.Метрика?</label>
+                            <select name="Analytics" class="form-select">
+                                <option>Да, подключить счетчик</option>
+                                <option>Нет, не нужно</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Онлайн-чат / Кнопки связи?</label>
+                            <input type="text" name="ChatWidget" class="form-input" placeholder="Нужна кнопка WhatsApp/Telegram?">
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800 p-4 rounded-lg border border-dashed border-gray-600">
+                        <p class="font-bold text-white mb-2">Где взять фото?</p>
+                        <p class="text-sm text-gray-400 mb-4">
+                            Загрузите логотип и фото на <b>Google/Яндекс Диск</b> и вставьте ссылку.
+                        </p>
+                        <label class="form-label">Ссылка на фото *</label>
+                        <input type="text" name="CloudLink" class="form-input" placeholder="https://disk.yandex.ru/...">
+                        <div class="mt-2">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="NoPhotos" class="rounded bg-slate-700 border-gray-600 text-purple-600">
+                                <span class="ml-2 text-sm text-gray-400">У меня нет фото, подберите сами (бесплатно)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Промокод</label>
+                        <input type="text" name="PromoCode" class="form-input w-1/3" placeholder="Если есть">
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-3xl border-2 border-purple-500/20 mb-8">
+                <h3 class="font-bold text-white mb-4">Финишная прямая</h3>
+                <div class="space-y-4">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" required class="mt-1 w-5 h-5 rounded bg-slate-800 border-gray-600 text-purple-600 focus:ring-purple-500">
+                        <span class="text-sm text-gray-300">Я подтверждаю, что сайт будет разработан <b>строго на основе этих ответов</b>.</span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" required class="mt-1 w-5 h-5 rounded bg-slate-800 border-gray-600 text-purple-600 focus:ring-purple-500">
+                        <span class="text-sm text-gray-300">Я понимаю, что правки "вкусовщины" после сдачи оплачиваются отдельно (50 BYN/час).</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full py-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl font-bold text-xl sm:text-2xl hover:scale-[1.02] transition transform shadow-2xl shadow-purple-500/50 mb-12">
+                Отправить Бриф и Начать 🚀
+            </button>
+
+        </form>
+    </div>
+
+    <script>
+        // Generate Stars Background
+        function generateStars() {
+            const container = document.getElementById('starsContainer');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.5 + 0.1;
+                container.appendChild(star);
+            }
+        }
+        generateStars();
+
+        // Auto-fill Order ID from URL
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order');
+            if (orderId) {
+                document.getElementById('orderIdField').value = orderId;
+            }
+        });
+
+        // Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+    </script>
+</body>
+</html>
