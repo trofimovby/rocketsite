@@ -12,12 +12,38 @@
     <meta property="og:description" content="Готовый сайт за 48 часов. Заполни бриф — получи результат.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop">
 
+    <!-- Rocket Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Manrope', sans-serif; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #667eea #0f172a;
+        }
 
         .gradient-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
@@ -195,6 +221,70 @@
         .portfolio-card:hover {
             box-shadow: 0 0 30px rgba(234, 179, 8, 0.3);
         }
+
+        /* Enhanced Input Focus Effects */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #a855f7;
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3), 0 0 20px rgba(168, 85, 247, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .form-input:valid {
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+
+        .form-input:focus:valid {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3), 0 0 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Telegram Button */
+        .telegram-btn {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0088cc, #00aced);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.5);
+            transition: all 0.3s ease;
+            z-index: 50;
+            cursor: pointer;
+        }
+
+        .telegram-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 30px rgba(0, 136, 204, 0.7);
+        }
+
+        .telegram-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        @media (max-width: 640px) {
+            .telegram-btn {
+                bottom: 6rem;
+                width: 56px;
+                height: 56px;
+            }
+
+            .telegram-btn svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-gray-100 antialiased pb-20 sm:pb-0 relative overflow-x-hidden">
@@ -299,8 +389,15 @@
                         <div class="absolute top-4 left-4 bg-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold">Спецтехника</div>
                     </div>
                     <div class="p-8">
-                        <h3 class="text-xl font-bold mb-2">Аренда автокрана «Мошека»</h3>
-                        <p class="text-gray-400 text-sm">Корпоративный лендинг. Срок: 48 часов.</p>
+                        <h3 class="text-xl font-bold mb-2">Аренда автокрана «Машека»</h3>
+                        <p class="text-gray-400 text-sm mb-4">Корпоративный лендинг. Срок: 48 часов.</p>
+                        <a href="https://trofimovby.github.io/crantest/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-yellow-500/50 rounded-lg text-sm font-semibold transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            Перейти на сайт
+                        </a>
                     </div>
                 </div>
                 <div class="glass rounded-3xl p-8 border border-white/5 flex flex-col justify-center items-center text-center relative overflow-hidden group">
@@ -529,12 +626,21 @@
         </div>
     </footer>
 
+    <!-- Telegram Floating Button -->
+    <a href="https://t.me/trofimovby" target="_blank" rel="noopener noreferrer" class="telegram-btn" aria-label="Написать в Telegram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-2.146 10.139-2.146 10.139s-.119.478-.537.478c-.178 0-.357-.089-.537-.268l-3.671-2.864-1.432-1.073-2.146-1.61c-.417-.313-.447-.626.09-.894l11.262-4.299c.537-.209.984.09.806.806z"/>
+        </svg>
+    </a>
+
+    <!-- Mobile Sticky CTA -->
     <div class="fixed bottom-0 left-0 w-full p-4 sm:hidden z-40 mobile-sticky-btn border-t border-white/10">
         <button onclick="openModal()" class="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-center text-white shadow-lg">
             Заказать сайт
         </button>
     </div>
 
+    <!-- Order Modal -->
     <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
 
@@ -547,11 +653,11 @@
                 <form onsubmit="generateOrder(event)" class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-1">Ваше имя</label>
-                        <input type="text" id="clientName" required class="w-full bg-slate-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500 placeholder-gray-500" placeholder="Иван">
+                        <input type="text" id="clientName" required class="form-input w-full bg-slate-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500" placeholder="Иван">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-1">Тариф</label>
-                        <select id="clientType" class="w-full bg-slate-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500">
+                        <select id="clientType" class="form-input w-full bg-slate-800 border border-gray-700 rounded-lg px-4 py-3 text-white">
                             <option value="Лендинг">Лендинг (350 BYN / 10к RUB)</option>
                             <option value="Магазин">Магазин (950 BYN / 25к RUB)</option>
                         </select>
@@ -585,12 +691,9 @@
     </div>
 
     <script>
-        // --- НАСТРОЙКИ ССЫЛОК ---
         const DONATION_LINK = 'https://www.donationalerts.com/r/rocketsite';
         const FORM_LINK_TEMPLATE = 'brief.html?order=ORDER_ID'
-        // -----------------------
 
-        // Generate Stars
         function generateStars() {
             const container = document.getElementById('starsContainer');
             const starCount = 100;
@@ -606,7 +709,6 @@
             }
         }
 
-        // Modal Logic
         const modal = document.getElementById('orderModal');
         const formState = document.getElementById('formState');
         const successState = document.getElementById('successState');
@@ -625,7 +727,6 @@
             }, 300);
         }
 
-        // Generate Order Logic
         function generateOrder(e) {
             e.preventDefault();
 
@@ -642,23 +743,19 @@
             successState.classList.remove('hidden');
         }
 
-        // Improved FAQ Toggle Logic
         function toggleFaq(button) {
             const item = button.parentElement;
             const isActive = item.classList.contains('active');
 
-            // Close all other items (Optional: remove this block if you want multiple open)
             document.querySelectorAll('.faq-item').forEach(el => {
                 el.classList.remove('active');
             });
 
-            // Toggle clicked item
             if (!isActive) {
                 item.classList.add('active');
             }
         }
 
-        // Currency Logic
         const prices = {
             BYN: { landing: '350 BYN', landingNum: '350', shop: '950 BYN', shopNum: '950', edit: '50 BYN', label: 'BYN', domain: '.by' },
             RUB: { landing: '10 000 ₽', landingNum: '10k', shop: '25 000 ₽', shopNum: '25k', edit: '1 500 ₽', label: 'RUB', domain: '.ru' }
