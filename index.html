@@ -3,759 +3,557 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rocket Sites — Сайты за 48 часов</title>
-    <meta name="description" content="Разработка лендингов и магазинов за 2 дня. От 350 BYN.">
+    <title>Студия веб-разработки «Ракета» — Сайты за 48 часов</title>
+    <meta name="description" content="Разработка лендингов и интернет-магазинов под ключ за 2 дня. Чистый код, без конструкторов. Цены от 350 BYN.">
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://site48.by/">
-    <meta property="og:title" content="Rocket Sites — Сайт по цене ужина">
-    <meta property="og:description" content="Готовый сайт за 48 часов. Заполни бриф — получи результат.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop">
-
-    <!-- Rocket Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        * { font-family: 'Manrope', sans-serif; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* --- Typography --- */
+        /* Montserrat для заголовков. Жирный, плотный, геометричный. */
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.02em; /* Чуть стягиваем буквы, как у Apple */
         }
 
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
+        /* Manrope для основного текста. Отличная читаемость. */
+        .font-body { font-family: 'Manrope', sans-serif; }
+        body { font-family: 'Manrope', sans-serif; }
 
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            border-radius: 10px;
-        }
+        /* --- Neo-Brutalism Styles --- */
+        .brutal-border { border: 2px solid #000000; }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
-        }
+        .shadow-red { box-shadow: 4px 4px 0px 0px #dc2626; }
+        .shadow-red-sm { box-shadow: 2px 2px 0px 0px #dc2626; }
+        .shadow-red-lg { box-shadow: 8px 8px 0px 0px #dc2626; }
+        .shadow-black { box-shadow: 4px 4px 0px 0px #000000; }
 
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: #667eea #0f172a;
-        }
+        /* --- Interactive Elements --- */
+        .hover-card { transition: all 0.2s ease; }
+        /* Убрал поворот (rotate), чтобы было строже */
+        .hover-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px 0px #dc2626; }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .btn-primary { transition: all 0.2s ease; }
+        .btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px 0px #000000; }
 
-        .glass {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Rocket Animation */
-        .rocket-logo {
-            display: inline-block;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(-2deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-        }
-
-        .rocket-logo:hover { animation: launch 0.8s forwards; }
-
-        @keyframes launch {
-            0% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 1; }
-            40% { transform: translateY(-20px) scale(1.1) rotate(5deg); opacity: 1; }
-            100% { transform: translateY(-300px) scale(1.3) rotate(15deg); opacity: 0; }
-        }
-
-        /* Warning Zone Pulse */
-        .warning-zone { animation: pulse-border 2s ease-in-out infinite; }
-
-        @keyframes pulse-border {
-            0%, 100% { border-color: rgba(239, 68, 68, 0.3); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-            50% { border-color: rgba(239, 68, 68, 0.6); box-shadow: 0 0 20px 5px rgba(239, 68, 68, 0.3); }
-        }
-
-        .mobile-sticky-btn {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
-        }
-
-        /* Stars Background */
-        .stars-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* Tech Stack Marquee */
-        .marquee {
-            overflow: hidden;
+        /* --- Graphics & Decor --- */
+        .underline-sketch {
             position: relative;
-            background: rgba(15, 23, 42, 0.5);
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            display: inline-block;
+        }
+        .underline-sketch::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; /* Чуть выше, чем раньше */
+            left: -2px;
+            right: -2px;
+            height: 8px; /* Чуть тоньше линия */
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 12'%3E%3Cpath d='M5,6 Q30,2 60,6 T120,6 T180,6 T240,6 T295,6' stroke='%23dc2626' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            z-index: -1;
+            opacity: 0.9;
         }
 
-        .marquee-content {
-            display: flex;
-            animation: scroll 30s linear infinite;
+        .paper-texture {
+           background-color: #ffffff;
+           background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
         }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .tech-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem 2rem;
-            white-space: nowrap;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Pricing Card Glow */
-        .pricing-card {
-            transition: all 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
-            transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.5);
-        }
-
-        /* FAQ Accordion Fixed */
-        .faq-item {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
-            background: rgba(15, 23, 42, 0.4);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            border-color: rgba(167, 139, 250, 0.3);
-            background: rgba(15, 23, 42, 0.6);
-        }
-
-        .faq-question {
-            width: 100%;
-            text-align: left;
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            opacity: 1;
-            padding-bottom: 1.5rem;
-        }
-
-        .faq-item.active .faq-question {
-            color: #c084fc;
-        }
-
-        .faq-icon {
-            transition: transform 0.3s ease;
-            font-size: 1.25rem;
-            color: #94a3b8;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-            color: #c084fc;
-        }
-
-        /* Modal Styles */
-        #orderModal { transition: opacity 0.3s ease; }
-        #orderModal.hidden { pointer-events: none; opacity: 0; }
-        #orderModal:not(.hidden) { pointer-events: auto; opacity: 1; }
-
-        /* Portfolio Card Glow */
-        .portfolio-card:hover {
-            box-shadow: 0 0 30px rgba(234, 179, 8, 0.3);
-        }
-
-        /* Enhanced Input Focus Effects */
-        .form-input {
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #a855f7;
-            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3), 0 0 20px rgba(168, 85, 247, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .form-input:valid {
-            border-color: #10b981;
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-        }
-
-        .form-input:focus:valid {
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3), 0 0 15px rgba(16, 185, 129, 0.4);
-        }
-
-        /* Telegram Button */
-        .telegram-btn {
-            position: fixed;
-            right: 1.5rem;
-            bottom: 1.5rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #0088cc, #00aced);
+        .step-badge {
+            width: 48px;
+            height: 48px;
+            border: 2px solid #dc2626;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.5);
-            transition: all 0.3s ease;
-            z-index: 50;
-            cursor: pointer;
+            font-family: 'Montserrat', sans-serif; /* Тоже Montserrat */
+            font-weight: 800; /* Очень жирный */
+            font-size: 1.5rem;
+            color: #dc2626;
+            background: white;
+            /* Убрал наклон цифр для строгости */
         }
 
-        .telegram-btn:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 6px 30px rgba(0, 136, 204, 0.7);
+        /* --- Components --- */
+        .faq-item { border: 2px solid black; background: white; transition: all 0.3s ease; }
+        .faq-item.active .faq-answer { max-height: 500px; opacity: 1; padding-bottom: 1.5rem; }
+        .faq-answer { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+
+        /* --- Animations --- */
+        @keyframes shaky-flight {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(1px, -1px) rotate(1deg); }
+            40% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(2px, 0px) rotate(0deg); }
+            80% { transform: translate(-1px, -2px) rotate(1deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
 
-        .telegram-btn svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
-        @media (max-width: 640px) {
-            .telegram-btn {
-                bottom: 6rem;
-                width: 56px;
-                height: 56px;
-            }
+        .animate-shaky { animation: shaky-flight 0.2s infinite linear; }
+        .animate-float { animation: floating 3s ease-in-out infinite; }
 
-            .telegram-btn svg {
-                width: 28px;
-                height: 28px;
-            }
+        @keyframes flyaway {
+            to { transform: translateY(-100vh); opacity: 0; visibility: hidden; }
         }
+        .preloader-hidden { animation: flyaway 0.8s ease-in forwards; }
     </style>
 </head>
-<body class="bg-slate-950 text-gray-100 antialiased pb-20 sm:pb-0 relative overflow-x-hidden">
+<style>
+    /* Добавь это в блок <style> в head */
+.hero-doodle-bg {
+    /* Устанавливаем картинку фоном */
+    background-image: url('img/hero-bg-doodle.jpg');
+    /* Фон не повторяется */
+    background-repeat: no-repeat;
+    /* Фон растягивается, обрезаясь по краям, чтобы заполнить блок */
+    background-size: cover;
+    /* Центрируем фон */
+    background-position: center center;
+    /* ВАЖНО: делаем его полупрозрачным, чтобы не мешал тексту.
+       Смешиваем с белым цветом */
+    background-blend-mode: lighten;
+    background-color: rgba(255, 255, 255, 0.85); /* Поиграй с числом 0.85 (от 0 до 1), чтобы настроить прозрачность */
+}
+</style>
+<body class="bg-white text-slate-900 antialiased flex flex-col min-h-screen relative">
 
-    <div class="stars-container" id="starsContainer"></div>
-
-    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+    <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center border-b-4 border-black">
+        <div class="animate-float">
+            <img src="img/rocket-scribble.png" alt="Загрузка..." class="w-40 animate-shaky mix-blend-multiply">
+        </div>
+        <p class="mt-8 text-2xl font-heading text-slate-900 animate-pulse">Заводим двигатели...</p>
+    </div>
+    <header class="fixed top-0 w-full z-40 bg-white/95 backdrop-blur-sm brutal-border border-t-0 border-l-0 border-r-0 border-b-2">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-2">
-                    <span class="rocket-logo relative">🚀</span>
-                    <span class="text-xl font-bold gradient-text hidden sm:block">Rocket Sites</span>
-                </div>
+                <a href="#" class="flex items-center space-x-2 group">
+                    <span class="text-3xl group-hover:-translate-y-1 transition-transform inline-block">🚀</span>
+                    <span class="text-lg sm:text-xl font-heading text-red-600">Студия «Ракета»</span>
+                </a>
+
                 <div class="flex items-center gap-4">
-                    <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-white/10">
-                        <button onclick="setCurrency('BYN')" id="btn-byn" class="px-3 py-1 rounded-md text-sm font-bold transition-all bg-purple-600 text-white shadow-lg">BYN</button>
-                        <button onclick="setCurrency('RUB')" id="btn-rub" class="px-3 py-1 rounded-md text-sm font-bold transition-all text-gray-400 hover:text-white">RUB</button>
+                    <div class="flex items-center bg-gray-100 rounded-lg p-1 brutal-border" aria-label="Выбор валюты">
+                        <button onclick="setCurrency('BYN')" id="btn-byn" class="px-3 py-1 rounded-md text-sm font-bold transition-all bg-red-600 text-white brutal-border shadow-sm">BYN</button>
+                        <button onclick="setCurrency('RUB')" id="btn-rub" class="px-3 py-1 rounded-md text-sm font-bold transition-all text-gray-600 hover:text-black hover:bg-white">RUB</button>
                     </div>
-                    <button onclick="openModal()" class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:opacity-90 transition text-sm hidden sm:block">
-                        Заказать
-                    </button>
+
+                    <a href="https://t.me/trofimovby" target="_blank" class="hidden sm:inline-flex px-5 py-2 bg-red-600 text-white rounded-lg font-bold brutal-border shadow-red-sm btn-primary text-sm">
+                        Написать
+                    </a>
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
+    <main class="flex-grow">
 
-    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
-        <div class="max-w-6xl mx-auto text-center relative z-10">
-            <div class="inline-block mb-6 px-4 py-2 glass rounded-full text-sm font-medium">
-                🚀 Готовый сайт за 48 часов
-            </div>
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-                Сайт для бизнеса<br>
-                <span class="gradient-text">по цене ужина</span>
-            </h1>
-            <p class="text-xl sm:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto">
-                Лендинг за <span class="text-white font-bold price-landing">350 BYN</span>.
-                Магазин за <span class="text-white font-bold price-shop">950 BYN</span>.
-                <br>Всё включено: дизайн, верстка, домен и хостинг.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 glass rounded-xl font-bold text-lg hover:bg-white/10 transition">Смотреть работы</a>
-                <button onclick="openModal()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-lg hover:scale-105 transition transform shadow-lg shadow-purple-500/50">
-                    Начать проект
-                </button>
-            </div>
-        </div>
-    </section>
+        <section id="hero" class="hero-doodle-bg pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
 
-    <section class="marquee py-4 relative z-10">
-        <div class="marquee-content">
-            <div class="tech-item">⚡ HTML5</div>
-            <div class="tech-item">🎨 CSS3</div>
-            <div class="tech-item">🐍 Python</div>
-            <div class="tech-item">⚙️ Nginx</div>
-            <div class="tech-item">🐧 Linux</div>
-            <div class="tech-item">💬 Telegram API</div>
-            <div class="tech-item">🔒 SSL</div>
-            <div class="tech-item">🚀 JavaScript</div>
-            <div class="tech-item">⚡ HTML5</div>
-            <div class="tech-item">🎨 CSS3</div>
-            <div class="tech-item">🐍 Python</div>
-            <div class="tech-item">⚙️ Nginx</div>
-            <div class="tech-item">🐧 Linux</div>
-            <div class="tech-item">💬 Telegram API</div>
-            <div class="tech-item">🔒 SSL</div>
-            <div class="tech-item">🚀 JavaScript</div>
-        </div>
-    </section>
-
-    <section class="py-12 px-4 sm:px-6 lg:px-8 border-y border-white/5 bg-slate-900/50 relative z-10">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8 text-center relative">
-                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500/0 via-purple-500/30 to-purple-500/0 -translate-y-1/2 z-0"></div>
-                <div class="relative z-10">
-                    <div class="w-16 h-16 mx-auto bg-slate-800 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-purple-500/30 shadow-lg shadow-purple-500/20">📝</div>
-                    <h3 class="text-xl font-bold mb-2">1. Заявка</h3>
-                    <p class="text-gray-400 text-sm">Получаете номер заказа на сайте.</p>
-                </div>
-                <div class="relative z-10">
-                    <div class="w-16 h-16 mx-auto bg-slate-800 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-purple-500/30 shadow-lg shadow-purple-500/20">💳</div>
-                    <h3 class="text-xl font-bold mb-2">2. Оплата</h3>
-                    <p class="text-gray-400 text-sm">Оплачиваете через DonationAlerts.</p>
-                </div>
-                <div class="relative z-10">
-                    <div class="w-16 h-16 mx-auto bg-slate-800 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-green-500/30 shadow-lg shadow-green-500/20">📄</div>
-                    <h3 class="text-xl font-bold mb-2">3. Бриф</h3>
-                    <p class="text-gray-400 text-sm">Заполняете анкету и получаете сайт.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl sm:text-5xl font-bold text-center mb-4">Наши <span class="gradient-text">работы</span></h2>
-            <div class="grid md:grid-cols-2 gap-8 mt-12">
-                <div class="portfolio-card glass rounded-3xl overflow-hidden border border-white/5 hover:border-yellow-500/50 transition group">
-                    <div class="h-64 bg-slate-800 relative overflow-hidden">
-                        <img src="3214.png" alt="Аренда спецтехники" class="w-full h-full object-cover transition duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100">
-                        <div class="absolute top-4 left-4 bg-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold">Спецтехника</div>
+                <div class="lg:col-span-7 relative z-10 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-red-50 rounded-full text-sm font-bold brutal-border shadow-red-sm transform -rotate-1">
+                        <span class="animate-pulse">🔥</span> Готовы к взлету
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-xl font-bold mb-2">Аренда автокрана «Машека»</h3>
-                        <p class="text-gray-400 text-sm mb-4">Корпоративный лендинг. Срок: 48 часов.</p>
-                        <a href="https://trofimovby.github.io/crantest/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-yellow-500/50 rounded-lg text-sm font-semibold transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
+
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-heading mb-8 leading-none text-slate-900">
+                        Запускаю сайты,<br>
+                        как <span class="text-red-600 underline-sketch relative z-10">Илон Маск</span> ракеты
+                    </h1>
+
+                    <p class="text-xl sm:text-2xl text-slate-700 mb-10 leading-relaxed font-medium border-l-4 border-red-600 pl-4 bg-red-50/50 py-2 max-w-2xl mx-auto lg:mx-0">
+                        Студия веб-разработки с амбициями.<br>
+                        Делаем быстро, дерзко и на чистом коде.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start items-center">
+                        <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 bg-red-600 text-white rounded-xl font-bold text-lg brutal-border shadow-red btn-primary flex items-center justify-center gap-2 group">
+                            Смотреть кейсы
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform group-hover:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
-                            Перейти на сайт
+                        </a>
+                        <a href="https://t.me/trofimovby" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg brutal-border shadow-black btn-primary flex items-center justify-center gap-2 hover:bg-gray-50">
+                            Обсудить проект
                         </a>
                     </div>
+                    <p class="mt-4 text-xs text-slate-500 font-heading transform rotate-1 opacity-70">*без лишней бюрократии</p>
                 </div>
-                <div class="glass rounded-3xl p-8 border border-white/5 flex flex-col justify-center items-center text-center relative overflow-hidden group">
-                    <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition text-4xl">🚀</div>
-                    <h3 class="text-2xl font-bold mb-2">Здесь будет ваш сайт</h3>
-                    <button onclick="openModal()" class="mt-4 px-6 py-3 border border-purple-500/50 rounded-xl text-purple-300 hover:bg-purple-500 hover:text-white transition">Занять место</button>
+
+                <div class="lg:col-span-5 relative hidden lg:block">
+                    <img src="img/hero-rocket-sketch.png" alt="Технический скетч ракеты" class="w-full max-w-md mx-auto transform rotate-3 hover:rotate-0 transition-transform duration-500 mix-blend-multiply relative z-10 drop-shadow-xl">
+
+                    <div class="absolute top-10 -left-4 text-3xl text-red-600 font-heading opacity-80 animate-bounce">↑ to the moon</div>
                 </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 border-y-2 border-black paper-texture" aria-labelledby="process-heading">
+    <div class="max-w-6xl mx-auto">
+        <h2 id="process-heading" class="text-4xl sm:text-6xl font-heading text-center mb-20">Как мы <span class="text-red-600">всё устроим</span></h2>
+
+        <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
+            <article class="bg-white brutal-border p-10 rounded-3xl shadow-red hover-card relative flex flex-col items-center">
+                <div class="step-badge absolute -top-8 -left-4">1</div>
+                <div class="w-48 h-48 mb-8">
+                    <img src="img/process-telegram.png" alt="Пишем в телеграм" class="w-full h-full mix-blend-multiply object-contain transform -rotate-2">
+                </div>
+                <h3 class="text-3xl font-heading mb-4">Просто поболтаем</h3>
+                <p class="text-slate-600 text-center text-lg leading-relaxed font-body">
+                    Пишите мне в Telegram. Расскажете идею, а я подскажу, как сделать её круто. Это бесплатно и ни к чему не обязывает.
+                </p>
+            </article>
+
+            <article class="bg-white brutal-border p-10 rounded-3xl shadow-red hover-card relative flex flex-col items-center">
+                <div class="step-badge absolute -top-8 -left-4">2</div>
+                <div class="w-48 h-48 mb-8">
+                    <img src="img/process-payment.png" alt="Удобная оплата" class="w-full h-full mix-blend-multiply object-contain transform rotate-2">
+                </div>
+                <h3 class="text-3xl font-heading mb-4">Удобно платим</h3>
+                <p class="text-slate-600 text-center text-lg leading-relaxed font-body">
+                    Принимаю любые безналичные способы: карты всех стран мира, быстрые платежи — как вам удобнее.
+                </p>
+            </article>
+
+            <article class="bg-white brutal-border p-10 rounded-3xl shadow-red hover-card relative flex flex-col items-center">
+                <div class="step-badge absolute -top-8 -left-4">3</div>
+                <div class="w-48 h-48 mb-8">
+                    <img src="img/process-launch.png" alt="Сайт готов" class="w-full h-full mix-blend-multiply object-contain transform -rotate-1">
+                </div>
+                <h3 class="text-3xl font-heading mb-4">Полетели!</h3>
+                <p class="text-slate-600 text-center text-lg leading-relaxed font-body">
+                    Заполняете короткую анкету, и я ухожу кодить. Ровно через 48 часов ваш новенький сайт появится в сети.
+                </p>
+            </article>
+        </div>
+
+        <div class="mt-16 text-center">
+            <p class="text-xl font-heading text-slate-400 transform rotate-1">Всё максимально прозрачно, без звёздочек и мелкого шрифта.</p>
+        </div>
+    </div>
+</section>
+
+       <section id="benefits" class="py-24 px-4 sm:px-6 lg:px-8 bg-white border-y-2 border-black relative overflow-hidden" aria-labelledby="benefits-heading">
+    <div class="absolute inset-0 z-0">
+        <img src="img/why-rocket-sketch.png" alt="Скетч Почему Ракета" class="w-full h-full object-cover object-center opacity-90 mix-blend-multiply">
+    </div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+        <h2 id="benefits-heading" class="text-4xl sm:text-6xl font-heading text-center mb-16 bg-white/80 backdrop-blur-sm py-4 brutal-border inline-block mx-auto px-8 transform -rotate-1 shadow-red-sm">
+            Почему выбирают <span class="text-red-600">«Ракету»</span>?
+        </h2>
+
+        <div class="grid md:grid-cols-12 gap-8 min-h-[600px]">
+            <div class="md:col-span-4 lg:col-span-5 hidden md:block"></div>
+
+            <div class="md:col-span-8 lg:col-span-7 flex flex-col justify-around py-8 space-y-12 md:space-y-0">
+
+                <article class="bg-white/90 backdrop-blur-sm brutal-border p-6 rounded-2xl shadow-red-sm hover-card ml-auto md:w-4/5 lg:w-3/4 transform rotate-1">
+    <h3 class="text-2xl font-heading mb-2 flex items-center">
+        <span class="text-red-600 mr-3 text-3xl">⚡</span> Скорость света
+    </h3>
+    <p class="text-slate-700 font-body leading-relaxed">
+        <span class="font-bold">Лендинг</span> готов через 48 часов. Интернет-магазин — за 72 часа. Не недели, не месяцы.
+    </p>
+</article>
+
+                <article class="bg-white/90 backdrop-blur-sm brutal-border p-6 rounded-2xl shadow-red-sm hover-card ml-auto md:w-4/5 lg:w-3/4 transform -rotate-1">
+                    <h3 class="text-2xl font-heading mb-2 flex items-center">
+                        <span class="text-red-600 mr-3 text-3xl">💸</span> Цена ужина
+                    </h3>
+                    <p class="text-slate-700 font-body leading-relaxed">
+                        Нет офиса и менеджеров. Вы платите только за работу разработчика и чистый код.
+                    </p>
+                </article>
+
+                <article class="bg-white/90 backdrop-blur-sm brutal-border p-6 rounded-2xl shadow-red-sm hover-card ml-auto md:w-4/5 lg:w-3/4 transform rotate-1">
+                    <h3 class="text-2xl font-heading mb-2 flex items-center">
+                        <span class="text-red-600 mr-3 text-3xl">🔑</span> Ваш домен
+                    </h3>
+                    <p class="text-slate-700 font-body leading-relaxed">
+                        Регистрируем на ваш паспорт. Вы — единственный полноправный владелец сайта и домена.
+                    </p>
+                </article>
+
+                <article class="bg-white/90 backdrop-blur-sm brutal-border p-6 rounded-2xl shadow-red-sm hover-card ml-auto md:w-4/5 lg:w-3/4 transform -rotate-1">
+                    <h3 class="text-2xl font-heading mb-2 flex items-center">
+                        <span class="text-red-600 mr-3 text-3xl">💻</span> Чистый код
+                    </h3>
+                    <p class="text-slate-700 font-body leading-relaxed">
+                        Не конструктор. HTML/CSS/JS. Сайт летает быстро, его любят поисковики.
+                    </p>
+                </article>
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="py-20 px-4 sm:px-6 lg:px-8 border-y border-white/5 bg-slate-900/30 relative z-10">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl sm:text-5xl font-bold text-center mb-12">Отзывы <span class="gradient-text">клиентов</span></h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="glass rounded-2xl p-6 border border-white/5">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-xl font-bold">М</div>
-                        <div>
-                            <div class="font-bold">Михаил К.</div>
-                            <div class="text-xs text-gray-400">Директор</div>
+        <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 bg-red-50 border-t-2 border-black" aria-labelledby="portfolio-heading">
+            <div class="max-w-6xl mx-auto">
+                <h2 id="portfolio-heading" class="text-4xl sm:text-5xl font-heading text-center mb-4">Наши <span class="text-red-600">работы</span></h2>
+                <p class="text-center text-slate-600 mb-12">Реальные проекты, запущенные недавно</p>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <article class="bg-white brutal-border rounded-2xl overflow-hidden shadow-red hover-card flex flex-col h-full">
+                        <div class="h-64 bg-gray-200 border-b-2 border-black overflow-hidden relative group">
+                            <img src="img/portfolio-1.jpg" alt="Скриншот сайта спецтехники" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                            <div class="absolute top-4 left-4 bg-yellow-300 text-black px-3 py-1 text-xs font-bold brutal-border transform -rotate-2">Спецтехника</div>
                         </div>
-                    </div>
-                    <p class="text-gray-300 text-sm">"Заказал лендинг для бизнеса по аренде спецтехники. Получил через 2 дня, всё чётко и без воды. Клиенты звонят."</p>
-                </div>
-                <div class="glass rounded-2xl p-6 border border-white/5">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-xl font-bold">А</div>
-                        <div>
-                            <div class="font-bold">Анна С.</div>
-                            <div class="text-xs text-gray-400">Владелица магазина</div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold mb-2">Аренда автокрана «Машека»</h3>
+                            <p class="text-slate-600 text-sm mb-6 flex-grow">Корпоративный лендинг для бизнеса аренды. Разработан за 48 часов.</p>
+                            <a href="https://trofimovby.github.io/crantest/" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg text-sm font-bold brutal-border shadow-black btn-primary">
+                                Посмотреть сайт →
+                            </a>
                         </div>
-                    </div>
-                    <p class="text-gray-300 text-sm">"Нужен был простой магазин на 30 товаров. Цена адекватная, сделали быстро. Теперь не завишу от Instagram."</p>
+                    </article>
+
+                    <article class="bg-white brutal-border rounded-2xl overflow-hidden shadow-red hover-card flex flex-col h-full">
+                        <div class="h-64 bg-gray-200 border-b-2 border-black overflow-hidden relative group">
+                            <img src="img/portfolio-2.jpg" alt="Скриншот Peak Sales" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                            <div class="absolute top-4 left-4 bg-blue-300 text-black px-3 py-1 text-xs font-bold brutal-border transform rotate-2">Корпоративный</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold mb-2">Peak Sales</h3>
+                            <p class="text-slate-600 text-sm mb-6 flex-grow">Многостраничный сайт с современным дизайном и анимацией.</p>
+                            <a href="https://peaksales.site/" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg text-sm font-bold brutal-border shadow-black btn-primary">
+                                Посмотреть сайт →
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="bg-white brutal-border rounded-2xl overflow-hidden shadow-red hover-card flex flex-col h-full">
+                        <div class="h-64 bg-gray-200 border-b-2 border-black overflow-hidden relative group">
+                            <img src="img/portfolio-3.jpg" alt="Скриншот Japan Eco" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                            <div class="absolute top-4 left-4 bg-green-300 text-black px-3 py-1 text-xs font-bold brutal-border transform -rotate-1">E-commerce</div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold mb-2">Japan Eco</h3>
+                            <p class="text-slate-600 text-sm mb-6 flex-grow">Интернет-магазин эко-товаров. Каталог, карточки, корзина.</p>
+                            <a href="https://trofimovby.github.io/japan_eco/" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg text-sm font-bold brutal-border shadow-black btn-primary">
+                                Посмотреть сайт →
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="bg-white brutal-border p-8 rounded-2xl shadow-red flex flex-col justify-center items-center text-center h-full min-h-[400px]">
+                        <div class="w-24 h-24 mb-6 animate-pulse">
+                            <img src="img/rocket-scribble.png" alt="Ваш сайт" class="w-full h-full mix-blend-multiply opacity-50">
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">Здесь будет ваш сайт</h3>
+                        <p class="text-slate-600 mb-6">Следующий проект — ваш. Займите место.</p>
+                        <a href="https://t.me/trofimovby" target="_blank" class="px-6 py-3 bg-white text-red-600 border-2 border-red-600 rounded-xl font-bold shadow-red-sm btn-primary">
+                            Занять место
+                        </a>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16">Тарифы</h2>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="pricing-card glass rounded-3xl p-8 border border-white/5 flex flex-col">
-                    <div class="text-sm font-semibold text-purple-400 mb-2">БЫСТРЫЙ СТАРТ</div>
-                    <h3 class="text-3xl font-bold mb-2">Лендинг</h3>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-5xl font-extrabold price-landing-num">350</span>
-                        <span class="text-2xl text-gray-400 currency-label">BYN</span>
-                    </div>
-                    <ul class="space-y-3 mb-8 flex-1 text-gray-300">
-                        <li class="flex gap-3"><span class="text-green-500">✓</span> Одностраничный сайт</li>
-                        <li class="flex gap-3"><span class="text-green-500">✓</span> Домен <span class="domain-zone">.by</span> + Хостинг</li>
-                    </ul>
-                    <button onclick="openModal('Лендинг')" class="block w-full py-4 bg-purple-600 hover:bg-purple-700 rounded-xl font-bold text-center transition">Заказать Лендинг</button>
-                </div>
-                <div class="pricing-card glass rounded-3xl p-8 border-2 border-purple-500/50 relative flex flex-col">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm font-bold shadow-lg">ХИТ</div>
-                    <div class="text-sm font-semibold text-pink-400 mb-2">ДЛЯ ПРОДАЖ</div>
-                    <h3 class="text-3xl font-bold mb-2">Мини-Магазин</h3>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-5xl font-extrabold price-shop-num">950</span>
-                        <span class="text-2xl text-gray-400 currency-label">BYN</span>
-                    </div>
-                    <ul class="space-y-3 mb-8 flex-1 text-gray-300">
-                        <li class="flex gap-3"><span class="text-green-500">✓</span> Всё что в «Лендинге»</li>
-                        <li class="flex gap-3"><span class="text-green-500">✓</span> Каталог до 50 товаров</li>
-                    </ul>
-                    <button onclick="openModal('Магазин')" class="block w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 rounded-xl font-bold text-center transition">Заказать Магазин</button>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="pricing-heading">
+            <div class="max-w-5xl mx-auto">
+                <h2 id="pricing-heading" class="text-4xl sm:text-5xl font-heading text-center mb-16">Тарифы</h2>
 
-    <section class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="max-w-5xl mx-auto">
-            <div class="warning-zone bg-red-900/20 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border-2 border-red-500/30">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-4xl">🚧</span>
-                    <h2 class="text-3xl font-bold text-red-400">Зона платных правок</h2>
-                </div>
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <div class="flex-1">
-                        <p class="text-gray-200 text-lg">
-                            Мы держим цену низкой, потому что работаем <span class="text-white font-bold">четко по вашему брифу</span>.
-                        </p>
-                        <p class="text-gray-400 text-sm mt-2">
-                            Если вы захотите изменить что-то после сдачи проекта — мы с радостью поможем, но это будет считаться отдельной услугой по часовому тарифу.
-                        </p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white brutal-border rounded-3xl p-8 shadow-red flex flex-col hover-card">
+                        <div class="text-sm font-bold text-red-600 mb-2 tracking-widest uppercase">Быстрый старт</div>
+                        <h3 class="text-3xl font-heading mb-4">Лендинг</h3>
+                        <div class="flex items-baseline gap-2 mb-8 border-b-2 border-gray-100 pb-8">
+                            <span class="text-5xl font-bold text-red-600 price-landing-num">350</span>
+                            <span class="text-2xl text-slate-600 currency-label">BYN</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-1 text-slate-700">
+                            <li class="flex gap-3 items-center"><span class="text-red-600 font-bold text-xl">✓</span> Одностраничный сайт</li>
+                            <li class="flex gap-3 items-center"><span class="text-red-600 font-bold text-xl">✓</span> Домен <span class="domain-zone font-bold">.by</span> + Хостинг</li>
+                            <li class="flex gap-3 items-center"><span class="text-red-600 font-bold text-xl">✓</span> SSL-сертификат</li>
+                            <li class="flex gap-3 items-center"><span class="text-red-600 font-bold text-xl">✓</span> Мобильная версия</li>
+                        </ul>
+                        <a href="https://t.me/trofimovby" target="_blank" class="block w-full py-4 bg-white text-slate-900 border-2 border-black rounded-xl font-bold text-center shadow-black btn-primary">Заказать</a>
                     </div>
-                    <div class="glass p-4 rounded-xl border border-red-500/40 text-center min-w-[180px]">
-                        <div class="text-sm text-red-300 font-bold">ТАРИФ</div>
-                        <div class="text-2xl font-extrabold text-red-400 price-edit">50 BYN</div>
-                        <div class="text-xs text-gray-500">в час</div>
+
+                    <div class="bg-red-600 text-white brutal-border rounded-3xl p-8 shadow-red-lg relative flex flex-col hover-card transform md:-translate-y-4">
+                        <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 px-6 py-1 bg-yellow-400 text-black rounded-full text-sm font-heading brutal-border shadow-sm rotate-2">ХИТ ПРОДАЖ</div>
+
+                        <div class="text-sm font-bold text-red-100 mb-2 tracking-widest uppercase">Для бизнеса</div>
+                        <h3 class="text-3xl font-heading mb-4">Мини-Магазин</h3>
+                        <div class="flex items-baseline gap-2 mb-8 border-b-2 border-red-500 pb-8">
+                            <span class="text-5xl font-bold price-shop-num">950</span>
+                            <span class="text-2xl text-red-100 currency-label">BYN</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-1 text-white">
+                            <li class="flex gap-3 items-center"><span class="font-bold text-xl">✓</span> Всё из тарифа «Лендинг»</li>
+                            <li class="flex gap-3 items-center"><span class="font-bold text-xl">✓</span> Каталог до 50 товаров</li>
+                            <li class="flex gap-3 items-center"><span class="font-bold text-xl">✓</span> Корзина и формы заказа</li>
+                            <li class="flex gap-3 items-center"><span class="font-bold text-xl">✓</span> Админ-панель</li>
+                        </ul>
+                        <a href="https://t.me/trofimovby" target="_blank" class="block w-full py-4 bg-white text-red-600 brutal-border rounded-xl font-bold text-center shadow-black btn-primary">Заказать</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-4xl sm:text-5xl font-bold text-center mb-4">Частые <span class="gradient-text">вопросы</span></h2>
-            <p class="text-center text-gray-400 mb-12">Коротко и по делу.</p>
+        <section id="rules" class="py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white border-4 border-red-600 rounded-3xl p-8 sm:p-10 shadow-red-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-100 rounded-bl-full -mr-16 -mt-16 z-0"></div>
 
-            <div class="space-y-4">
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="text-lg">Почему такая низкая цена?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
-                            У нас нет офиса, секретарей и раздутого штата менеджеров. Вы платите только за работу разработчика и автоматизированный процесс. Мы не экономим на качестве, мы убрали лишние расходы.
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-4xl">🚧</span>
+                            <h2 class="text-3xl font-heading text-red-600">Правила студии</h2>
                         </div>
-                    </div>
-                </div>
+                        <div class="space-y-4 text-slate-700 text-lg">
+                            <p>Мы держим низкие цены, потому что работаем <span class="font-bold bg-yellow-200 px-1 brutal-border border-dashed border-gray-400">четко по брифу</span>.</p>
+                            <p>Если после сдачи проекта вы захотите "поиграть шрифтами" или переделать структуру — мы поможем, но это отдельная услуга.</p>
 
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="text-lg">Это конструктор (Tilda/Wix) или код?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
-                            Это чистый код (HTML, CSS, JS). Сайт будет работать очень быстро, его любят поисковики, и за него не нужно платить ежемесячную подписку, как на конструкторах.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="text-lg">Кому принадлежит домен?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
-                            Только вам. Мы регистрируем домен и хостинг на ваши паспортные данные. После сдачи проекта мы передаем вам все логины и пароли. Вы — полноправный владелец.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="text-lg">Что если сайт сломается?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
-                            Мы даем гарантию 14 дней. Если вы найдете техническую ошибку (не работает кнопка, поехала верстка) — мы исправим это бесплатно и моментально.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="text-lg">Можно ли потом расширить функционал?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
-                            Да, конечно. Так как это открытый код, любой программист сможет его доработать. Или вы можете снова обратиться к нам за доплату.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="text-lg">Как происходит оплата?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
-                            Мы используем сервис DonationAlerts. Это позволяет принимать оплату картами любых стран (Беларусь, Россия, Мир) быстро и безопасно.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="text-lg">Нужно ли мне писать тексты?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
-                            Желательно, ведь вы лучше знаете свой бизнес. Но если текстов нет — не страшно. Мы напишем базовые продающие тексты сами, основываясь на ваших ответах в брифе.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="text-lg">А если мне не понравится дизайн?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="px-6 pb-6 text-gray-300 leading-relaxed">
-                            Мы работаем по вашему Брифу. Вы показываете примеры, которые вам нравятся — мы делаем в таком же стиле. Если мы сделали по ТЗ, но вы передумали — переделка возможна, но уже платно. Это честный подход.
+                            <div class="flex flex-col sm:flex-row items-center gap-6 pt-6 mt-6 border-t-2 border-red-100">
+                                <div class="bg-white border-2 border-red-600 p-4 rounded-xl shadow-red-sm text-center min-w-[200px] transform rotate-1">
+                                    <div class="text-xs text-red-600 font-bold uppercase mb-1">Тариф правок</div>
+                                    <div class="text-3xl font-heading text-red-600 price-edit">50 BYN</div>
+                                    <div class="text-xs text-slate-500">в час</div>
+                                </div>
+                                <p class="text-sm text-slate-500 italic text-center sm:text-left">
+                                    Это честно. Вы получаете качественный продукт за фиксированную цену, а мы не тратим время на бесконечные правки.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-slate-900/30 relative z-10">
-        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-8">
-            <div class="w-32 h-32 rounded-full bg-slate-800 overflow-hidden flex-shrink-0 border-2 border-purple-500/30">
-                 <img src="photo.jpg" alt="Александр Трофимов" class="w-full h-full object-cover">
-            </div>
-            <div class="text-center sm:text-left">
-                <h2 class="text-2xl font-bold mb-1">Александр Трофимов</h2>
-                <p class="text-purple-400 font-medium mb-4">Full Stack Developer</p>
-                <div class="text-gray-300 leading-relaxed space-y-2">
-                    <p>4 года опыта. Высшее техническое образование.</p>
-                    <p>Я убрал из процесса разработки всё лишнее: бесконечные совещания, согласования цветов и бюрократию. Я просто беру вашу задачу и превращаю её в рабочий код за 48 часов.</p>
-                    <p class="text-sm text-gray-500">Я отвечаю за каждый этап: от покупки домена до настройки сервера. Вы получаете готовый продукт из одних рук.</p>
+        <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t-2 border-black" aria-labelledby="faq-heading">
+            <div class="max-w-3xl mx-auto">
+                <h2 id="faq-heading" class="text-4xl sm:text-5xl font-heading text-center mb-4">Частые <span class="text-red-600">вопросы</span></h2>
+                <p class="text-center text-slate-600 mb-12">Коротко и по делу</p>
+
+                <div class="space-y-4">
+                    <div class="faq-item rounded-xl">
+                        <button class="faq-question w-full text-left p-6 cursor-pointer flex justify-between items-center font-bold text-lg" onclick="toggleFaq(this)">
+                            <span>Почему такая низкая цена?</span>
+                            <span class="faq-icon text-xl">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="px-6 pb-6 text-slate-700 leading-relaxed border-t-2 border-dashed border-gray-200 pt-4">
+                                У нас нет офиса, секретарей и раздутого штата. Вы платите только за код. Мы автоматизировали процессы и убрали лишние расходы.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item rounded-xl">
+                        <button class="faq-question w-full text-left p-6 cursor-pointer flex justify-between items-center font-bold text-lg" onclick="toggleFaq(this)">
+                            <span>Это конструктор (Tilda) или код?</span>
+                            <span class="faq-icon text-xl">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="px-6 pb-6 text-slate-700 leading-relaxed border-t-2 border-dashed border-gray-200 pt-4">
+                                Это чистый код (HTML, CSS, JS). Сайт будет работать быстрее конструкторов, лучше индексироваться поисковиками и не требует ежемесячной подписки.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item rounded-xl">
+                        <button class="faq-question w-full text-left p-6 cursor-pointer flex justify-between items-center font-bold text-lg" onclick="toggleFaq(this)">
+                            <span>Кому принадлежит домен?</span>
+                            <span class="faq-icon text-xl">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="px-6 pb-6 text-slate-700 leading-relaxed border-t-2 border-dashed border-gray-200 pt-4">
+                                Вам. Мы регистрируем всё на ваши паспортные данные. После сдачи проекта отдаем все пароли. Вы — единственный владелец.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item rounded-xl">
+                        <button class="faq-question w-full text-left p-6 cursor-pointer flex justify-between items-center font-bold text-lg" onclick="toggleFaq(this)">
+                            <span>Как происходит оплата?</span>
+                            <span class="faq-icon text-xl">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="px-6 pb-6 text-slate-700 leading-relaxed border-t-2 border-dashed border-gray-200 pt-4">
+                                Через сервис DonationAlerts. Это позволяет принимать оплату картами любых стран (Беларусь, Россия, Мир) безопасно и с чеком.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800 text-center relative z-10">
+        <section id="author" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white brutal-border rounded-3xl p-8 shadow-red">
+                    <div class="flex flex-col sm:flex-row items-center gap-8">
+                        <div class="w-32 h-32 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 brutal-border shadow-sm">
+                            <img src="img/photo.jpg" alt="Александр Трофимов" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <h2 class="text-2xl font-heading mb-1">Александр Трофимов</h2>
+                            <p class="text-red-600 font-bold mb-4">Full Stack Developer</p>
+                            <div class="text-slate-700 leading-relaxed space-y-2">
+                                <p>4 года опыта. Высшее техническое образование.</p>
+                                <p>Я убрал из разработки всё лишнее: совещания и бюрократию. Беру задачу и превращаю её в код.</p>
+                                <p class="text-sm text-slate-500 pt-2 border-t border-gray-200 mt-2">ИП Трофимов А.С.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="main-footer" class="py-8 px-4 border-t-2 border-black bg-white text-center">
         <div class="max-w-7xl mx-auto">
-            <p class="text-gray-400 text-sm">© 2026 Rocket Sites. ИП Трофимов А.С.</p>
+            <p class="text-slate-600 text-sm font-medium">© 2026 Студия веб-разработки «Ракета»</p>
         </div>
     </footer>
 
-    <!-- Telegram Floating Button -->
-    <a href="https://t.me/trofimovby" target="_blank" rel="noopener noreferrer" class="telegram-btn" aria-label="Написать в Telegram">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <a href="https://t.me/trofimovby" target="_blank" rel="noopener noreferrer" class="fixed right-6 bottom-6 w-14 h-14 bg-red-600 rounded-full flex items-center justify-center brutal-border shadow-black z-50 transition-transform hover:-translate-y-1 hover:shadow-red hidden sm:flex" aria-label="Написать в Telegram">
+        <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-2.146 10.139-2.146 10.139s-.119.478-.537.478c-.178 0-.357-.089-.537-.268l-3.671-2.864-1.432-1.073-2.146-1.61c-.417-.313-.447-.626.09-.894l11.262-4.299c.537-.209.984.09.806.806z"/>
         </svg>
     </a>
 
-    <!-- Mobile Sticky CTA -->
-    <div class="fixed bottom-0 left-0 w-full p-4 sm:hidden z-40 mobile-sticky-btn border-t border-white/10">
-        <button onclick="openModal()" class="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-center text-white shadow-lg">
-            Заказать сайт
-        </button>
-    </div>
-
-    <!-- Order Modal -->
-    <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
-
-        <div class="relative bg-slate-900 border border-purple-500/30 rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl leading-none">✕</button>
-
-            <div id="formState">
-                <h2 class="text-2xl font-bold mb-2">Начать проект 🚀</h2>
-                <p class="text-gray-400 mb-6 text-sm">Сформируйте заказ, чтобы получить номер.</p>
-                <form onsubmit="generateOrder(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Ваше имя</label>
-                        <input type="text" id="clientName" required class="form-input w-full bg-slate-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500" placeholder="Иван">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Тариф</label>
-                        <select id="clientType" class="form-input w-full bg-slate-800 border border-gray-700 rounded-lg px-4 py-3 text-white">
-                            <option value="Лендинг">Лендинг (350 BYN / 10к RUB)</option>
-                            <option value="Магазин">Магазин (950 BYN / 25к RUB)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="w-full py-4 bg-purple-600 hover:bg-purple-700 rounded-xl font-bold text-lg mt-4 transition">Сформировать заказ</button>
-                </form>
-            </div>
-
-            <div id="successState" class="hidden text-center">
-                <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">✓</div>
-                <h3 class="text-xl font-bold text-gray-400 mb-2">Заказ сформирован!</h3>
-
-                <div class="bg-slate-800 rounded-lg p-4 mb-6 border border-white/10">
-                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Ваш номер заказа</p>
-                    <p class="text-3xl font-extrabold text-white tracking-wider" id="displayOrderId">RS-XXXX</p>
-                    <p class="text-xs text-gray-500 mt-2">Сохраните его для оплаты</p>
-                </div>
-
-                <div class="space-y-3">
-                    <a href="#" id="linkPayment" target="_blank" class="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-white hover:opacity-90 transition">
-                        💳 1. Оплатить заказ
-                    </a>
-
-                    <a href="#" id="linkBrief" target="_blank" class="block w-full py-3 bg-slate-800 border border-green-500/50 text-green-400 hover:bg-green-500/10 rounded-xl font-bold transition">
-                        📝 2. Заполнить Бриф
-                    </a>
-                </div>
-                <p class="text-xs text-gray-500 mt-4">Укажите номер заказа в комментарии к оплате и в первом вопросе брифа.</p>
-            </div>
-        </div>
+    <div class="fixed bottom-0 left-0 w-full p-4 sm:hidden z-40 bg-white border-t-2 border-black shadow-[0_-4px_10px_rgba(0,0,0,0.1)]">
+        <a href="https://t.me/trofimovby" target="_blank" class="block w-full py-3 bg-red-600 text-white brutal-border rounded-xl font-bold text-center shadow-sm active:shadow-none active:translate-y-1 transition-all">
+            Написать в Telegram
+        </a>
     </div>
 
     <script>
-        const DONATION_LINK = 'https://www.donationalerts.com/r/rocketsite';
-        const FORM_LINK_TEMPLATE = 'brief.html?order=ORDER_ID'
+        // 1. Preloader Logic
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            // Min display time 1.5s
+            setTimeout(function() {
+                preloader.classList.add('preloader-hidden');
+                setTimeout(() => { preloader.style.display = 'none'; }, 800);
+            }, 1500);
+        });
 
-        function generateStars() {
-            const container = document.getElementById('starsContainer');
-            const starCount = 100;
-
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                star.style.opacity = Math.random() * 0.5 + 0.3;
-                container.appendChild(star);
-            }
-        }
-
-        const modal = document.getElementById('orderModal');
-        const formState = document.getElementById('formState');
-        const successState = document.getElementById('successState');
-
-        function openModal(siteType) {
-            modal.classList.remove('hidden');
-            if(siteType) document.getElementById('clientType').value = siteType;
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            setTimeout(() => {
-                formState.classList.remove('hidden');
-                successState.classList.add('hidden');
-                document.getElementById('displayOrderId').innerText = 'RS-XXXX';
-            }, 300);
-        }
-
-        function generateOrder(e) {
-            e.preventDefault();
-
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            const orderId = `RS-${randomNum}`;
-
-            document.getElementById('displayOrderId').innerText = orderId;
-            document.getElementById('linkPayment').href = DONATION_LINK;
-
-            const finalFormLink = FORM_LINK_TEMPLATE.replace('ORDER_ID', orderId);
-            document.getElementById('linkBrief').href = finalFormLink;
-
-            formState.classList.add('hidden');
-            successState.classList.remove('hidden');
-        }
-
+        // 2. FAQ Logic
         function toggleFaq(button) {
             const item = button.parentElement;
             const isActive = item.classList.contains('active');
 
-            document.querySelectorAll('.faq-item').forEach(el => {
-                el.classList.remove('active');
-            });
+            // Close all others
+            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
 
-            if (!isActive) {
-                item.classList.add('active');
-            }
+            // Toggle current
+            if (!isActive) item.classList.add('active');
         }
 
+        // 3. Currency Switcher Logic
         const prices = {
             BYN: { landing: '350 BYN', landingNum: '350', shop: '950 BYN', shopNum: '950', edit: '50 BYN', label: 'BYN', domain: '.by' },
             RUB: { landing: '10 000 ₽', landingNum: '10k', shop: '25 000 ₽', shopNum: '25k', edit: '1 500 ₽', label: 'RUB', domain: '.ru' }
@@ -763,6 +561,8 @@
 
         function setCurrency(currency) {
             const data = prices[currency];
+
+            // Update Text
             document.querySelectorAll('.price-landing').forEach(el => el.innerText = data.landing);
             document.querySelectorAll('.price-landing-num').forEach(el => el.innerText = data.landingNum);
             document.querySelectorAll('.price-shop').forEach(el => el.innerText = data.shop);
@@ -771,20 +571,27 @@
             document.querySelectorAll('.currency-label').forEach(el => el.innerText = data.label);
             document.querySelectorAll('.domain-zone').forEach(el => el.innerText = data.domain);
 
+            // Update Buttons Styling
             const btnByn = document.getElementById('btn-byn');
             const btnRub = document.getElementById('btn-rub');
+
+            const activeClasses = ['bg-red-600', 'text-white', 'shadow-sm'];
+            const inactiveClasses = ['text-gray-600', 'hover:text-black', 'hover:bg-white', 'bg-transparent', 'shadow-none'];
+
             if (currency === 'BYN') {
-                btnByn.className = 'px-3 py-1 rounded-md text-sm font-bold transition-all bg-purple-600 text-white shadow-lg';
-                btnRub.className = 'px-3 py-1 rounded-md text-sm font-bold transition-all text-gray-400 hover:text-white';
+                btnByn.classList.add(...activeClasses);
+                btnByn.classList.remove(...inactiveClasses);
+
+                btnRub.classList.add(...inactiveClasses);
+                btnRub.classList.remove(...activeClasses);
             } else {
-                btnRub.className = 'px-3 py-1 rounded-md text-sm font-bold transition-all bg-purple-600 text-white shadow-lg';
-                btnByn.className = 'px-3 py-1 rounded-md text-sm font-bold transition-all text-gray-400 hover:text-white';
+                btnRub.classList.add(...activeClasses);
+                btnRub.classList.remove(...inactiveClasses);
+
+                btnByn.classList.add(...inactiveClasses);
+                btnByn.classList.remove(...activeClasses);
             }
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            generateStars();
-        });
     </script>
 </body>
 </html>
