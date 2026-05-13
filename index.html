@@ -12,19 +12,31 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <style>
         /* --- Typography --- */
-        /* Montserrat для заголовков. Жирный, плотный, геометричный. */
+        /* Montserrat везде */
         .font-heading {
             font-family: 'Montserrat', sans-serif;
-            letter-spacing: -0.02em; /* Чуть стягиваем буквы, как у Apple */
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
-        /* Manrope для основного текста. Отличная читаемость. */
-        .font-body { font-family: 'Manrope', sans-serif; }
-        body { font-family: 'Manrope', sans-serif; }
+        .font-body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+
+        /* Курсив для акцентов */
+        .text-italic {
+            font-style: italic;
+        }
 
         /* --- Neo-Brutalism Styles --- */
         .brutal-border { border: 2px solid #000000; }
@@ -106,10 +118,6 @@
         .animate-shaky { animation: shaky-flight 0.2s infinite linear; }
         .animate-float { animation: floating 3s ease-in-out infinite; }
 
-        @keyframes flyaway {
-            to { transform: translateY(-100vh); opacity: 0; visibility: hidden; }
-        }
-        .preloader-hidden { animation: flyaway 0.8s ease-in forwards; }
     </style>
 </head>
 <style>
@@ -131,12 +139,6 @@
 </style>
 <body class="bg-white text-slate-900 antialiased flex flex-col min-h-screen relative">
 
-    <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center border-b-4 border-black">
-        <div class="animate-float">
-            <img src="img/rocket-scribble.png" alt="Загрузка..." class="w-40 animate-shaky mix-blend-multiply">
-        </div>
-        <p class="mt-8 text-2xl font-heading text-slate-900 animate-pulse">Заводим двигатели...</p>
-    </div>
     <header class="fixed top-0 w-full z-40 bg-white/95 backdrop-blur-sm brutal-border border-t-0 border-l-0 border-r-0 border-b-2">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -169,12 +171,12 @@
                     </div>
 
                     <h1 class="text-5xl sm:text-6xl lg:text-7xl font-heading mb-8 leading-none text-slate-900">
-                        Запускаю сайты,<br>
+                        Запускаем сайты,<br>
                         как <span class="text-red-600 underline-sketch relative z-10">Илон Маск</span> ракеты
                     </h1>
 
                     <p class="text-xl sm:text-2xl text-slate-700 mb-10 leading-relaxed font-medium border-l-4 border-red-600 pl-4 bg-red-50/50 py-2 max-w-2xl mx-auto lg:mx-0">
-                        Студия веб-разработки с амбициями.<br>
+                        <span class="italic">Студия веб-разработки с амбициями.</span><br>
                         Делаем быстро, дерзко и на чистом коде.
                     </p>
 
@@ -189,7 +191,7 @@
                             Обсудить проект
                         </a>
                     </div>
-                    <p class="mt-4 text-xs text-slate-500 font-heading transform rotate-1 opacity-70">*без лишней бюрократии</p>
+                    <p class="mt-4 text-xs text-slate-500 font-heading transform rotate-1 opacity-70 italic">*без лишней бюрократии</p>
                 </div>
 
                 <div class="lg:col-span-5 relative hidden lg:block">
@@ -212,7 +214,7 @@
                 </div>
                 <h3 class="text-3xl font-heading mb-4">Просто поболтаем</h3>
                 <p class="text-slate-600 text-center text-lg leading-relaxed font-body">
-                    Пишите мне в Telegram. Расскажете идею, а я подскажу, как сделать её круто. Это бесплатно и ни к чему не обязывает.
+                    Пишите нам в Telegram. Расскажете идею, а мы подскажем, как сделать её <span class="italic font-semibold">круто</span>. Это бесплатно и ни к чему не обязывает.
                 </p>
             </article>
 
@@ -234,13 +236,13 @@
                 </div>
                 <h3 class="text-3xl font-heading mb-4">Полетели!</h3>
                 <p class="text-slate-600 text-center text-lg leading-relaxed font-body">
-                    Заполняете короткую анкету, и я ухожу кодить. Ровно через 48 часов ваш новенький сайт появится в сети.
+                    Заполняете короткую анкету, и мы уходим кодить. Ровно через 48 часов ваш новенький сайт появится в сети.
                 </p>
             </article>
         </div>
 
         <div class="mt-16 text-center">
-            <p class="text-xl font-heading text-slate-400 transform rotate-1">Всё максимально прозрачно, без звёздочек и мелкого шрифта.</p>
+            <p class="text-xl font-heading text-slate-400 transform rotate-1 italic">Всё максимально прозрачно, без звёздочек и мелкого шрифта.</p>
         </div>
     </div>
 </section>
@@ -265,7 +267,7 @@
         <span class="text-red-600 mr-3 text-3xl">⚡</span> Скорость света
     </h3>
     <p class="text-slate-700 font-body leading-relaxed">
-        <span class="font-bold">Лендинг</span> готов через 48 часов. Интернет-магазин — за 72 часа. Не недели, не месяцы.
+        <span class="font-bold">Лендинг</span> готов через 48 часов. Интернет-магазин — за <span class="italic">72 часа</span>. Не недели, не месяцы.
     </p>
 </article>
 
@@ -274,7 +276,7 @@
                         <span class="text-red-600 mr-3 text-3xl">💸</span> Цена ужина
                     </h3>
                     <p class="text-slate-700 font-body leading-relaxed">
-                        Нет офиса и менеджеров. Вы платите только за работу разработчика и чистый код.
+                        Нет офиса и менеджеров. Вы платите только за работу разработчика и <span class="italic font-semibold">чистый код</span>.
                     </p>
                 </article>
 
@@ -283,7 +285,7 @@
                         <span class="text-red-600 mr-3 text-3xl">🔑</span> Ваш домен
                     </h3>
                     <p class="text-slate-700 font-body leading-relaxed">
-                        Регистрируем на ваш паспорт. Вы — единственный полноправный владелец сайта и домена.
+                        Регистрируем на ваш паспорт. Вы — <span class="italic font-semibold">единственный полноправный владелец</span> сайта и домена.
                     </p>
                 </article>
 
@@ -292,7 +294,7 @@
                         <span class="text-red-600 mr-3 text-3xl">💻</span> Чистый код
                     </h3>
                     <p class="text-slate-700 font-body leading-relaxed">
-                        Не конструктор. HTML/CSS/JS. Сайт летает быстро, его любят поисковики.
+                        Не конструктор. HTML/CSS/JS. Сайт <span class="italic font-semibold">летает быстро</span>, его любят поисковики.
                     </p>
                 </article>
 
@@ -314,7 +316,7 @@
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
                             <h3 class="text-xl font-bold mb-2">Аренда автокрана «Машека»</h3>
-                            <p class="text-slate-600 text-sm mb-6 flex-grow">Корпоративный лендинг для бизнеса аренды. Разработан за 48 часов.</p>
+                            <p class="text-slate-600 text-sm mb-6 flex-grow">Корпоративный лендинг для бизнеса аренды. Разработан за <span class="italic">48 часов</span>.</p>
                             <a href="https://trofimovby.github.io/crantest/" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg text-sm font-bold brutal-border shadow-black btn-primary">
                                 Посмотреть сайт →
                             </a>
@@ -501,7 +503,7 @@
                             <p class="text-red-600 font-bold mb-4">Full Stack Developer</p>
                             <div class="text-slate-700 leading-relaxed space-y-2">
                                 <p>4 года опыта. Высшее техническое образование.</p>
-                                <p>Я убрал из разработки всё лишнее: совещания и бюрократию. Беру задачу и превращаю её в код.</p>
+                                <p class="italic">Мы убрали из разработки всё лишнее: совещания и бюрократию. Берём задачу и превращаем её в код.</p>
                                 <p class="text-sm text-slate-500 pt-2 border-t border-gray-200 mt-2">ИП Трофимов А.С.</p>
                             </div>
                         </div>
@@ -531,17 +533,7 @@
     </div>
 
     <script>
-        // 1. Preloader Logic
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            // Min display time 1.5s
-            setTimeout(function() {
-                preloader.classList.add('preloader-hidden');
-                setTimeout(() => { preloader.style.display = 'none'; }, 800);
-            }, 1500);
-        });
-
-        // 2. FAQ Logic
+        // FAQ Logic
         function toggleFaq(button) {
             const item = button.parentElement;
             const isActive = item.classList.contains('active');
@@ -553,7 +545,7 @@
             if (!isActive) item.classList.add('active');
         }
 
-        // 3. Currency Switcher Logic
+        // Currency Switcher Logic
         const prices = {
             BYN: { landing: '350 BYN', landingNum: '350', shop: '950 BYN', shopNum: '950', edit: '50 BYN', label: 'BYN', domain: '.by' },
             RUB: { landing: '10 000 ₽', landingNum: '10k', shop: '25 000 ₽', shopNum: '25k', edit: '1 500 ₽', label: 'RUB', domain: '.ru' }
